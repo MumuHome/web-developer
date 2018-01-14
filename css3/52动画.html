@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            margin:100px auto;
+            background: green;
+            /*调用动画*/
+            /*animation:动画名称 持续时间 执行次数 是否反响 运动曲线 延迟时间*/
+            /*animation: move 2s 3 alternate;*/
+            animation: gun 2s;
+        }
+        /*
+        css3中的动画使用
+        类似js中的函数 先定义 再调用
+        js:function animate(){ 函数体 }  调用animate();
+        css3中的动画：
+        @keyframes 函数名{
+            from{初始状态}
+            to{结束状态}
+        }
+        调用：基本语法形式
+        animate:动画名称 持续时间 动画执行次数（infinite无限次）;
+        */
+        /*定义动画*/
+        @keyframes move {
+            from{
+                transform: translateX(0);
+            }
+            to{
+                transform: translateX(500px);
+            }
+        }
+        /*定义多种动画*/
+        @keyframes gun {
+            0%{
+                transform: translateX(0px) translateY(0px);
+                background: green;
+                border-radius:0;
+            }
+            25%{
+                transform: translateX(500px) translateY(0px);
+            }
+            50%{
+                transform: translateX(500px) translateY(300px);
+            }
+            75%{
+                transform: translateX(0px) translateY(300px);
+            }
+            100%{
+                transform: translateX(0px) translateY(0px);
+                background: red;
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

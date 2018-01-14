@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fun(x) {
+        return function (y) {
+            console.log(x+y);
+        }
+    }
+    var obj = fun(5); //相当于 obj = function () { console.log(x) };
+    obj(2);
+</script>
+</body>
+</html>

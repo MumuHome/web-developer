@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 400px;
+            height: 400px;
+            /*图片边框的路径*/
+            border-image-source: url("img/timg.jpg");
+            /*图片边框的剪裁*/
+            border-image-slice:166;
+            /*background-color: pink;*/
+            border-image-width: 20px;
+            /*repeat边框图片的平铺 但是可能显示不完整*/
+            /*round 平铺 但是保证图片完整*/
+            /*stretch 拉伸显示*/
+            border-image-repeat: round;
+        }
+    </style>
+</head>
+<body>
+<!--<img src="img/timg.jpg">-->
+<div class="box"></div>
+</body>
+</html>

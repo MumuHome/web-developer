@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" charset="utf-8">
+        //数组本身是对象
+        //数组类似于java里的map容器，长度可随意改变，元素类型任意
+        //var arr1 new Array()//一般不需要写数组长度 不推荐这种方法
+        //var arr = [1,2,3,4,true,'abc'];
+        //alert (arr.length);
+        //arr.length = 5;
+        //alert (arr);//这里隐式调用了toString()方法
+
+        /*
+        var arr =[];
+        var result = arr.push(1,2,3);//push方法向数组中追加元素（返回值为数组的长度）
+        alert(arr);
+        alert(result);
+        var obj = arr.pop()//移除数组的最后一个元素 返回值为移除的元素
+        */
+
+        /*
+        var arr = [1,2,3,4]
+        arr.shift();//移除第一个元素，返回移除的元素
+        arr.unshift(5,6);//从头部插入多个元素，返回新数组的长度
+        */
+
+        //splice 操作数组本身
+        // 第一个参数表示起始位置
+        //第二个参数表示要截取的个数
+        //从第三个参数以后表示追加的新元素
+        var arr = [1,2,3,4,5];
+        arr.splice(1,2,3,4,5);//结果为134545
+
+        //sslice 不操作数组本身 返回值为截取的值
+        var arr = [1,2,3,4,5];
+        arr.slice(2,4);//截取范围（左闭右开区间）
+
+        //sort 正序排序法，直接改变数组本身，但是是按字符串的规则比较大小的，需要引入函数
+        //reverse 倒序排序法，直接改变数组本身，直接把数组元素倒过来
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

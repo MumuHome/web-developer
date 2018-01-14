@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding :0;
+            margin :0;
+        }
+        body{
+            background: #333;
+        }
+        #nav{
+            position: relative;
+            width: 800px;
+            height: 42px;
+            background: white url("img/rss.png") right center no-repeat;
+            margin: 100px auto;
+            border-radius: 5px;
+        }
+        #ul{
+            position: relative;
+            list-style: none;
+            overflow: hidden;
+        }
+        #ul li{
+            float: left;
+            width: 83px;
+            height: 42px;
+            text-align: center;
+            line-height: 42px;
+            color: #333;
+            font-size: 18px;
+            z-index: 9;
+            cursor: pointer;
+        }
+        #cloud{
+            display: block;
+            position: absolute;
+            width: 83px;
+            height: 42px;
+            top:0;
+            left:0;
+            background: url("img/cloud.gif") no-repeat center center;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div id="nav">
+    <span id="cloud"></span>
+    <ul id="ul">
+        <li>首页新闻</li>
+        <li>师资力量</li>
+        <li>活动策划</li>
+        <li>企业文化</li>
+        <li>招聘信息</li>
+        <li>公司简介</li>
+        <li>上海校区</li>
+        <li>广州校区</li>
+    </ul>
+</div>
+<script>
+    var current = 0;    //用于存放点击时候的位置
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    var li = document.getElementById("ul").children;
+    for ( var i=0 ; i<li.length ; i++ )
+    {
+        li[i].onmouseover = function () {
+            target = this.offsetLeft;
+        }
+        li[i].onmouseout = function () {
+            target = current;
+        }
+        li[i].onclick = function () {
+            current = this.offsetLeft;  //点击的时候把当前位置存下来
+        }
+    }
+
+    //缓动公式
+    var leader = 0, target = 0;
+    setInterval(function () {
+        leader = leader + ( target - leader )/10;
+        $("cloud").style.left = leader + "px";
+    },10)
+</script>
+</body>
+</html>

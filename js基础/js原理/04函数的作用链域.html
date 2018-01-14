@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function outfun() {
+        var num = 10;   //outfun的一个变量
+        function infun() {
+            var key;
+            console.log(num)//外部函数变量可以被内部函数使用
+        }
+        console.log(key)//内部函数变量可以被外部函数使用
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>object的应用</title>
+    <script type="text/javascript" charset="utf-8">
+        //object是所有类的基础类
+        //var obj = new object();
+        var obj = {}
+        //定义的两种方法
+        obj.name = '张三';
+        obj.age = '20';//给对象设置属性
+        obj.say = function(){
+            alert('hellow world');
+        }
+        //访问对象的属性或方法
+        //alert(obj.name);
+        //alert(obj.age);
+        //obj.say();
+
+        delete obj.age;//删除对象
+
+        //如何去遍历一个对象  for in语句式
+        for ( var ab in obj){
+            alert(ab + ':' + obj[ab]);
+        }
+
+        //保存对象的创建函数
+        //alert(obj.constructor);
+
+        //hasOwnProperty(propertyName)用于检测给定属性在对象中是否存在
+        alert(obj.hasOwnProperty('name'));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

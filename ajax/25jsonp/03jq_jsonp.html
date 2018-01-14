@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="jq发送jsonp" id="jqJson">
+</body>
+</html>
+<!--导入jq-->
+<script src="js/jquery-3.0.0.min.js"></script>
+<script>
+    function callBack(data) {
+        console.log("自己写的回调函数"+data);
+    }
+//    如果使用jq，它会自动帮助我们拼接一个callback
+//    如果我们想要设置自己的回调函数 可以通过 jsonpCallback:"字符串"来设置
+//    跟我们自己写的 发送ajax请求相比 要更改以下地方：
+    /*
+    * dataType:"jsonp"
+    * 如果想要自定义回调的函数名字 需要jsonpCallback:"函数名"来设置
+    */
+    $(function () {
+        $("#jqJson").click(function () {
+            $.ajax({
+                url:"03jq_jsonP.php",
+                success:function (data) {
+                    console.log(data);
+                },
+//                指定返回类型为jsonp实现跨域请求
+                dataType:"jsonp",
+                jsonpCallback:"callBack"
+            })
+        })
+    })
+</script>

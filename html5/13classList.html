@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element.classList</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+<div class="bs-example" data-example-id="simple-nav-pills">
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
+</div>
+<script>
+//    获取所有li元素
+//    var lis = document.querySelectorAll('.nav > li');
+////    遍历 给每个元素注册事件click
+//    for ( var i = 0; i<lis.length ; i++ )
+//    {
+//        lis[i].addEventListener('click',function (e) {
+//            //    将所有元素重置
+//            for ( var i = 0 ; i<lis.length ; i++ )
+//            {
+//                lis[i].classList.remove('active');
+//            }
+//            //    事件执行中我们将当前触发事件的元素active
+//            this.classList.add('active');
+//            e.preventDefault();
+//        })
+//    }
+
+
+    var link = document.querySelector('.bs-example');
+    link.addEventListener('click',function (e) {
+//        判断当前classList中有没有active
+        var exist = this.classList.contains('active')
+//        toggle函数的第二个参数 true为添加 false为删除
+        this.classList.toggle('active',!exist);
+        e.preventDefault();
+    })
+</script>
+</body>
+</html>

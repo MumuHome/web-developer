@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="demo"></div>
+<script>
+    var num = 0;
+    var demo = document.getElementById("demo");
+    window.onresize = function () { //ie8等以下浏览器 每触发一次执行两次
+        num ++;
+        demo.innerHTML = window.innerWidth || document.documentElement.clientWidth; //打印当前屏幕宽度
+        console.log(num);
+    }
+</script>
+</body>
+</html>

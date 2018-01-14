@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function outfun() {
+        var num = 0;
+        function infun() {
+            console.log(num)
+        }
+        return infun;   //返回函数体
+    }
+    //使用
+    var dem = outfun(); //返回的是 function infun() {console.log(num)};
+    dem();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        img{
+            display: block;
+            /*取消图片底部3px的距离*/
+        }
+        ul{
+            list-style: none;
+            width: 400%;
+            position: absolute;
+            left:100px;
+        }
+        ul li{
+            float: left;
+        }
+        #bigBox{
+            width: 600px;
+            height: 200px;
+            margin: 100px auto;
+            background: pink;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="bigBox">
+    <ul id="ul">
+        <li><img src="../../html5/images/01.jpg"></li>
+        <li><img src="images/02.jpg"></li>
+        <li><img src="images/03.jpg"></li>
+        <li><img src="images/04.jpg"></li>
+        <li><img src="../../html5/images/01.jpg"></li>
+        <li><img src="images/02.jpg"></li>
+    </ul>
+</div>
+<script charset="utf-8" type="text/javascript">
+    var bigBox = document.getElementById("bigBox");
+    var ul = document.getElementById("ul");
+    var timer = null;
+    var i = 0;
+    timer = setInterval(move,5);
+    function move() {
+        i = i + 1
+        i>=1200?i=0:i;
+        ul.style.left =  - i +"px";
+    }
+    bigBox.onmouseover = function () {
+        clearInterval(timer);
+    }
+    bigBox.onmouseout = function () {
+        timer = setInterval(move,5);
+    }
+
+
+</script>
+</body>
+</html>

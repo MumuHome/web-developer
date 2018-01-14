@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height: 200px;
+            width: 200px;
+            background: pink;
+            margin: 20px;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            function getClass(id,classname) {
+                //分为支持和不支持
+                //支持
+                if ( document.getElementsByClassName ){
+                    if (id){
+                        var eleId = document.getElementById(id);
+                        return eleId.getElementsByClassName(classname);
+                    }else {
+                        return document.getElementsByClassName(classname);
+                    }
+                }
+                //不支持
+                if (id){
+                    var eleId = document.getElementById(id);
+                    var dom = eleId.getElementsByTagName("*");
+                }else {
+                    var dom = document.getElementsByTagName("*");
+                }
+                var arr = [];
+                for ( var i=0; i<dom.length ; i++ ){
+                    var txt = dom[i].className.split(" ");
+                    for ( var j=0 ;j<txt.length ; j++ ){
+                        if ( txt[j] == classname ){
+                            arr.push(dom[i])
+                        }
+                    }
+                }
+                return arr;
+            }
+//            alert(getClass("one","demo").length);
+            var demoarr = getClass("one","demo");
+            for ( var i=0 ; i<demoarr.length ; i++ )
+            {
+                demoarr[i].style.backgroundColor = "green";
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="demo"></div>
+<div></div>
+<div id="one">
+    <div class="demo"></div>
+    <div class="demo txt"></div>
+</div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

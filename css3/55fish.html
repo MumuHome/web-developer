@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: skyblue;
+        }
+        .box{
+            width: 509px;
+            height: 270px;
+            /*border:1px solid purple;*/
+            background: url("img/shark1.png") center top;
+            animation: move 1s steps(8) infinite;
+        }
+        @keyframes move {
+            0%{
+                background: url("img/shark1.png") center top;
+            }
+            100%{
+                background: url("img/shark1.png") center -2160px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

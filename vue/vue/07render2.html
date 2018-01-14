@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .f30{
+            font-size: 30px;
+        }
+        .bg{
+            background: orange;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="demo" :custom="abc">
+    <!--如果addClass为true，那么添加red这个class-->
+    <span class="f30" :class="{red:addClass}">原html中内容</span>
+</div>
+<script>
+    //    数据
+    let obj = {
+        addClass:true
+    };
+
+    //    声明式渲染
+    var vm = new Vue({
+        el:'#demo',
+        data:obj,
+//        覆盖原来的对应id
+        render(createElement){
+            return createElement(
+                'ul',
+                {
+//                    对其添加class style 或者绑定自定义属性
+                    class:{
+                        bg:true
+                    },
+                    style:{
+                        fontSize:'50px'
+                    },
+                    attrs:{
+                        name:'xuj'
+                    },
+//                    对dom对象操作 优先级大于下面的
+                    domProps:{
+                        innerHTML:'<li>我是domProps中的html</li>'
+                    }
+                },
+                [createElement('li',1),createElement('li',2)]
+            )
+        }
+    });
+
+</script>
+</body>
+</html>

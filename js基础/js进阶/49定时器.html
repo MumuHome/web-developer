@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            var dom = document.getElementById("dom");
+            setInterval(fn,1000);   //每隔一秒就执行一次fn
+            var num = 1;
+            function fn() {
+                num ++;
+                dom.innerHTML = num;
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="dom"></div>
+</body>
+</html>

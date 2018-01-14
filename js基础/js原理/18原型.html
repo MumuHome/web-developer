@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    var arr = [];   //数组
+//    arr.run = function () {
+//        alert("酸辣土豆丝");
+//    }//自定义方法
+//    arr.run();
+//    var arr1 = [];
+    //arr1.run(); 不能用
+    //有一个问题  只要是数组，能不能都有run方法？
+    //此时可以把 prototype原型取出来
+    Array.prototype.run = function () { //只要是数组，都会调用这个方法
+        alert("酸辣土豆丝");
+    };
+    var demo = [];
+    demo.run();
+    var demo1 = [];
+    demo1.run();
+</script>
+</body>
+</html>

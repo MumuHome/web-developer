@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .clock{
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 50px auto;
+            background: url("img/clock.jpg") no-repeat;
+        }
+        .clock div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .h{
+            background: url("img/hour.png") no-repeat center center;
+        }
+        .m{
+            background: url("img/minute.png") no-repeat center center;
+        }
+        .s{
+            background: url("img/second.png") no-repeat center center;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            function $(dom) {
+                return document.getElementById(dom);
+            }
+            // 开始定时器
+            var s=0,m=0,h=0,ms=0;
+            setInterval(time,1000)
+            function time() {
+                var date = new Date();  //得到最新的时间
+                ms = date.getMilliseconds();    //得到现在的毫秒数
+                s = date.getSeconds() + ms/1000;  //得到现在的秒数 不但要现在的，还要过去的毫秒数
+                m = date.getMinutes() + s/60;   //得到现在的分数 不但要现在的，还要过去的秒数
+                h = date.getHours()%12 + m/60;  //得到现在的小时 不但要现在的，还要过去的分数，十二进制
+                //  旋转角度
+                //  css3 动画   秒针一秒走6度
+                $("second").style.WebkitTransform = "rotate("+ s*6 +"deg)";  //webkitTransform变换  rotate旋转  deg角度
+                //  分针一分走6度
+                $("minute").style.WebkitTransform = "rotate("+ m*6 +"deg)";
+                //  时针一小时走30度
+                $("hour").style.WebkitTransform = "rotate("+ h*30 +"deg)";
+
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div class="clock">
+    <div class="h" id="hour"></div>
+    <div class="m" id="minute"></div>
+    <div class="s" id="second"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="获取xml数据" id="getXML">
+</body>
+</html>
+<script>
+    document.querySelector("#getXML").addEventListener('click',function () {
+        var ajax = new XMLHttpRequest();
+        ajax.open('get','get_XML.php');
+        ajax.send();
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState==4 && ajax.status==200)
+            {
+//                如果返回的是xml文件
+                console.log(ajax.responseText);
+//                异步对象中有另一个属性，专门用来获取xml
+//                xml在浏览器端，就是一个document对象
+//                解析时，可以直接使用querySelector或者getElementById等等
+                console.log(ajax.responseXML);
+//                返回页面文档
+                console.log(window.document);
+            }
+        }
+    })
+</script>

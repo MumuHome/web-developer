@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="https://unpkg.com/vue" type="text/javascript" charset="utf-8"></script>-->
+    <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+    .active{
+        display: block;
+        background: #000;
+        color: #fff;
+        width: 100%;
+        height:100%;
+    }
+    .pagination,.pagination li{
+        list-style: none;
+        padding:0;
+        margin: 0;
+        overflow: hidden;
+    }
+    .pagination li {
+        box-sizing: border-box;
+        float: left;
+        width: 40px;
+        height: 40px;
+        background: #ffffff;
+        color: #000;
+        border:1px solid #000000;
+    }
+    .table2{
+        margin-top:20px;
+        border-top: 1px solid #999;
+        border-right: 1px solid #999;
+        width: 400px;
+        line-height: 2;
+        font-size: 16px;
+        text-align: center;
+    }
+    .table2 th{
+        border-left: 1px solid #999;
+        border-bottom: 1px solid #999;
+        background: #318a0e;
+        color: white;
+    }
+    .table2 td{
+        border-left: 1px solid #999;
+        border-bottom: 1px solid #999;
+    }
+    .table2 button{
+        background: #318a0e;
+        color: #fff;
+        border: 0;
+        margin:0;
+        padding: 3px 10px;
+    }
+    fieldset{
+        width: 400px;
+    }
+    .form-group{
+        overflow: hidden;
+        margin-top: 10px;
+    }
+    .form-group label{
+        float: left;
+        width: 50px;
+    }
+    .form-group input{
+        float: left;
+    }
+    .form-group button{
+        padding:4px 10px;
+        background: #318a0e;
+        color: white;
+        font-size: 16px;
+    }
+
+</style>
+<body>
+<div class="app1">
+    <ul class="pagination">
+        <li v-for="n in pageCount">
+            <a href="javascript:void(0)" v-bind:class="activeNumber === n?'active':''">{{ n }}</a>
+            <!--若activeNumber的值和数据类型等于n，则把active类给a标签-->
+        </li>
+    </ul>
+</div>
+<!--注意v-for="n in pageCount"这行代码，pageCount是一个整数，遍历时n从0开始，然后遍历到pageCount –1结束。-->
+<script>
+        var vm = new Vue({
+            el:'.app1',
+            data:{
+                activeNumber:1,
+                pageCount:10
+            }
+        })
+</script>
+
+<div class="app2">
+    <p><input type="text" v-model="message"></p>
+    <p>
+        <!--click事件直接绑定一个方法-->
+        <button v-on:click="greet">greet</button>
+    </p>
+    <p>
+        <!--click事件使用内联语句-->
+        <button v-on:click="say('hi')">hi</button>
+    </p>
+</div>
+<!--有两种形式调用方法：绑定一个方法（让事件指向方法的引用），或者使用内联语句。-->
+<!--Greet按钮将它的单击事件直接绑定到greet()方法，而Hi按钮则是调用say()方法。-->
+<script>
+    var vm = new Vue({
+        el:'.app2',
+        data:{
+            message:'hello vue.js'
+        },
+//        在 `methods` 对象中定义方法
+        methods:{
+            greet:function () {
+//                方法内'this'指向vm
+                alert(this.message)
+            },
+            say:function (msg) {
+                alert(msg)
+            }
+        }
+    })
+</script>
+<!--Vue.js为最常用的两个指令v-bind和v-on提供了缩写方式。-->
+<!--v-bind指令可以缩写为一个冒号，v-on指令可以缩写为@符号。-->
+<div class="app3">
+    <fieldset>
+        <legend>
+            Create New Person
+        </legend>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" v-model="newPerson.name"/>
+        </div>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="text" v-model="newPerson.age"/>
+        </div>
+        <div class="form-group">
+            <label>Sex:</label>
+            <select type="text" v-model="newPerson.sex">
+                <option value="girl">girl</option>
+                <option value="boy">boy</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label></label>
+            <button @click="createPerson">Create</button>
+        </div>
+    </fieldset>
+
+    <table class="table2" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Delete</th>
+        </tr>
+        <tr v-for="person in people">
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.sex }}</td>
+            <td :class="'text-center'">
+                <button @click="deletePerson($index)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    var vm = new Vue({
+        el:'.app3',
+        data:{
+            newPerson:{
+                name:'',
+                age:0,
+                sex:'boy'
+            },
+            people:[{
+                name:'xujuan',
+                age:18,
+                sex:'girl',
+            },{
+                name:'oyzj',
+                age:24,
+                sex:'boy'
+            },{
+                name:'tiemei',
+                age:18,
+                sex:'girl'
+            },{
+                name:'wuqiao',
+                age:10,
+                sex:'girl'
+            }]
+        },
+        methods:{
+            createPerson:function () {
+                this.people.push(this.newPerson);
+                // 添加完newPerson对象后，重置newPerson对象
+                this.newPerson = {
+                    name:'',
+                    age:0,
+                    sex:'boy'
+                }
+            },
+            deletePerson:function (index) {
+//                    删除一个数组元素
+                this.people.splice(index,1);
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

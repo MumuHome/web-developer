@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height: 200px;
+            width: 200px;
+            background: pink;
+            margin: 20px;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            //封装自己的class类名
+            function getClass(classname) {
+//                如果浏览器支持，则直接返回
+                if ( document.getElementsByClassName ){
+                    return document.getElementsByClassName(classname)
+                }
+//                不支持的浏览器
+                var arr = [];
+                var dom = document.getElementsByTagName("*");//取出所有的标签
+                for ( var i=0 ; i<dom.length ; i++ ){
+                    if (dom[i].className = "classname"){
+                        arr.push(dom[i]);
+                    }
+                }
+                return arr;
+            }
+            getClass("demo");
+//            alert(getClass("demo").length)
+        }
+    </script>
+</head>
+<body>
+<div class="demo"></div>
+<div></div>
+<div class="demo"></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

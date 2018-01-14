@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:400px;
+            height: 60px;
+            border: 1px solid #dcdcdc;
+            margin:20px auto;
+            text-align: center;
+        }
+        div[class]{
+            background: red;
+        }
+        /*div 有class属性 并且值为box1*/
+        div[class="box1"]{
+            background: pink;
+        }
+        /*div 有class属性 并且值为以aa开头*/
+        div[class^="aa"]{
+            background: green;
+        }
+        /*div 有class属性 并且值为以aa结尾*/
+        div[class$="aa"]{
+            background: grey;
+        }
+        /*div 有class属性 并且包含aa的*/
+        div[class*="aa"]{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="box1"></div>
+<div class="box2aa"></div>
+<div class="aabox3"></div>
+<div class="box4bb"></div>
+<div class="bbbox5cc"></div>
+<div class="box6aa"></div>
+<div class="box7ee"></div>
+<div></div>
+</body>
+</html>

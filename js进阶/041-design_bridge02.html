@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript" src="../new-text/CommonUtil.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../new-text/jQuery.js"></script>
+    <script charset="utf=8" type="text/javascript">
+        // 桥模式：特权函数
+        /*
+        var PublicClass = function () {
+            // private variable
+            var name = 'z3';
+            // 通过getter 访问成员变量  可以通过这个函数访问私有的变量，getName就是一个特权函数
+            this.getName = function () {
+                return name;
+            }
+        }
+        var p1 = new PublicClass();
+        alert(p1.getName());
+        */
+
+        /*
+        var PublicClass = function () {
+            // private variable 私有化的变量
+            var PrivateMethod = function () {
+                alert('执行了一个很复杂的操作。。。')
+            };
+            // 单元测试这个很复杂的函数
+            // 通过特权函数访问这个私有的独立单元
+            this.BridgeMethod = function () {
+                return PrivateMethod();
+            }
+        }
+        var p1 = new PublicClass();
+        p1.BridgeMethod();
+        */
+
+        //桥模式 用桥把多个单元组织到一起
+        //使每个单元都能独立化 可以实现自己的任何变化
+        var Class1 = function (a,b,c) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+        var Class2 = function (d,e) {
+            this.d = d;
+            this.e = e;
+        }
+        var BridgeClass = function (a,b,c,d,e) {
+            this.class1 = new Class1(a,b,c);
+            this.class2 = new Class2(d,e);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

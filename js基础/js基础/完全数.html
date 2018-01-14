@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //输入1-10000的完全数
+        //完全数：一个数恰好等于他的因数之和，那么这个数就是完全数
+        function perfect(num) {
+            var sum = 0;  //存放所有因数的和
+            // 找出num的所有因数的和
+            for ( var i = 1; i<num ; i++ ){
+                if ( num%i ==0 ){
+                    // i就是num的一个因数
+                    sum = sum + i;
+                }
+            }
+//            if ( sum - num  == num ){
+//                return num;
+//            }
+            return sum;
+        }
+
+        for ( var num=1 ; num<=10000 ; num++ ){
+//            console.log(perfect(num));
+            if ( perfect(num) == num ){
+                console.log(num)
+            }
+        }
+//        console.log(perfect(6));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

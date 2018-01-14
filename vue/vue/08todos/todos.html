@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div class="page-top">
+        <div class="page-content">
+            <h2>任务计划列表</h2>
+        </div>
+    </div>
+    <div class="main">
+        <h3 class="big-title">添加任务：</h3>
+        <!--当前input的value值与todo双向绑定-->
+        <input 
+            placeholder="例如：吃饭睡觉打豆豆；提示：+回车即可添加任务"
+            class="task-input" 
+            type="text"
+            @keyup.enter="addTodo(123,$event)"
+            v-model="enterData"
+        />
+        <!--如果list里面有值，那么这个dom显示，否则隐藏-->
+        <ul class="task-count" v-show="list.length">
+            <!--过滤多少个任务未完成 得到一个新的数组，需要这个数组的长度
+            推荐使用计算属性而不应该直接在模板中写逻辑-->
+            <li>
+                {{
+                  noCheck
+                }}
+                个任务未完成</li>
+            <li class="action">
+                <a href="#all" :class="{active:visibility === 'all'}">所有任务</a>
+                <a href="#unfinish" :class="{active:visibility === 'unfinish'}">未完成的任务</a>
+                <a href="#finish" :class="{active:visibility === 'finish'}">完成的任务</a>
+            </li>
+        </ul>
+        <h3 class="big-title">任务列表：</h3>
+        <div class="tasks">
+            <!--如果list里面有值，那么这个dom显示，否则隐藏-->
+            <span class="no-task-tip" v-show="!list.length">还没有添加任何任务</span>
+            <ul class="todo-list">
+                <!--item为数组里的每一项 list为整个数组-->
+                <!--绑定判断class 如果item.isChecked的值为true 则添加completed 否则不添加-->
+                <li class="todo" :class="{completed:item.isChecked,editing:item === edtorData}" v-for="item in filteredList">
+                    <div class="view">
+                        <!--双向绑定并监控勾选与不勾选 如果勾选，isChecked为true，不勾选为false-->
+                        <!--v-model用于可以进行数据交换的标签-->
+                        <input type="checkbox" class="toggle" v-model="item.isChecked"/>
+                        <!--绑定双击事件-->
+                        <label @dblclick="edtorTodo(item)">{{ item.title }}</label>
+                        <!--删除这条数据的时候，为了获取是哪条数据做的操作，需要传该条数据的参数-->
+                        <button class="destroy" @click="dele(item)"></button>
+                    </div>
+                    <!--v-foucs自定义属性 foucs中定义如果item === edtorData为true，则执行foucs-->
+                    <!--失去焦点或按键enter时edtorData值为空，item === edtorData为false，那么editing属性会被自动移除-->
+                    <!--按sec键时 返回编辑-->
+                    <input class="edit" type="text"
+                           v-model="item.title"
+                           v-foucs="item === edtorData"
+                           @blur="edtore(item)"
+                           @keyup.enter="edtore(item)"
+                           @keyup.esc="cancel(item)"
+                    />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

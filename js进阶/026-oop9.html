@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //混合继承，原型继承和借用构造函数继承
+        function Person(name,age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype = {
+            constructor: Person,
+            sayHello:function () {
+            alert('Helllo world')
+        }
+
+        }
+
+        function Boy(name,age,sex) {
+            //call 绑定父类的模板 实现 借用构造函数继承 只复制了父类的模板
+            Boy.superClass.constructor.call(this,name,age); //Person替换为Boy.superClass.constructor
+            this.sex = sex;
+        }
+        //原型继承的方式  继承了父类的模板，又继承了父类的原型对象
+        //Boy.prototype = new Person(); //不用这种继承
+        //只继承一遍父类的原型对象
+        function extend(sub,sup) {
+            // 目的：实现只继承父类的原型对象
+            // 1、用一个空函数进行中转
+            var F = function () {};
+            F.prototype = sup.prototype; // 2、实现空函数的原型对象和超类的原型对象转换
+            sub.prototype = new F(); // 3、原型继承
+            sub.prototype.constructor = sub; //4、还原子类的构造器
+            //保存一下父类的原型对象  1、方便解耦 2、方便获得父类的原型对象
+            sub.superClass = sup.prototype; //自定义一个子类的静态属性 接收父类的原型对象
+            //判断父类的原型对象的构造器（加保险）
+            if (sup.prototype.constructor == Object.prototype.constructor){
+                sup.prototype.constructor = sup; //手动还原父类原型对象的构造器
+            }
+        }
+
+        extend(Boy,Person);
+        //给子类加一个原型对象的方法
+        Boy.prototype.sayHello = function () {
+            alert('hi javascript!')
+        }
+
+        var b = new Boy('张三',20,'男');
+        alert(b.name);
+        alert(b.sex);
+        b.sayHello();
+        Boy.superClass.sayHello.call(b);//输出父类的sayHello方法
+
+        //三件事：继承了两次父类模板，继承了一次父类的原型对象
+        //extend方法 变成两件事：继承一次父类的模板，继承一次父类的原型对象
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

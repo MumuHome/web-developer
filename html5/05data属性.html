@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<lu id="list">
+    <!--age记录与li相关的属性-->
+    <!--<li data-age="19"></li>-->
+</lu>
+<div id="info"></div>
+<script>
+    window.onload = function () {
+        //定义一个键值 即id
+        var data = {
+            01:{
+                name:"张三1",
+                age:18
+            },
+            02:{
+                name:"张三2",
+                age:19
+            },
+            03:{
+                name:"张三3",
+                age:20
+            }
+        };
+        function $(id) {
+            return document.getElementById(id)
+        };
+        //jQ操作一定要做变量本地化
+        for ( key in data )
+        {
+            var item = data[key];
+//            alert(data[key]);
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(item.name));
+            li.setAttribute("data-age",item.age);   //给这个li加上一个属性名为data-age，值为item.age
+//            li.innerHTML = item.name;
+            $("list").appendChild(li);  //变量本地化
+            //此处才将元素加到界面上
+            li.addEventListener("click",function () {   //并不只是最后一个赋值，而是所有的li都监听了
+//                alert(this.innerHTML);
+//                alert(this.getAttribute("data-age"));
+                alert(this.dataset.age);
+            });
+        }
+    }
+</script>
+</body>
+</html>

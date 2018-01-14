@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" charset="utf-8">
+        //this对象是指在运行时期基于执行环境所绑定的
+        //this总是指向调用者
+        var k = 10;
+        function test() {
+            this.k = 20;//因为test调用为全局环境，因此this指代的是全局作用域，意为全局作用域的k
+        }
+        test();//此时test为全局变量
+        alert(test.k);//输出test作用域的k，因此为undefined
+        alert(window.k);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

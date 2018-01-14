@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background: #f0f0f0;
+            font-size: 22px;
+        }
+        section{
+            width: 1000px;
+            margin:0 auto;
+        }
+        ul{
+            background: white;
+            border:1px solid #ccc;
+            margin:30px 0;
+            overflow: hidden;
+        }
+        ul li{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            margin:10px;
+        }
+        section:nth-child(1) ul{
+            display: flex;
+            /*主轴对其方式 从主轴方向开始对其（从左向右）*/
+            justify-content: flex-start;
+        }
+        /*设置伸缩盒子*/
+        section:nth-child(2) ul{
+            display: flex;
+            /*主轴对其方式 从主轴结束方向开始对其（与反转不同）*/
+            justify-content: flex-end;
+        }
+        section:nth-child(3) ul{
+            display: flex;
+            /*主轴对其方式 从主轴结束方向开始对其（与反转不同）*/
+            justify-content: center;
+        }
+        section:nth-child(4) ul{
+            /*设置伸缩布局*/
+            display: flex;
+            /*主轴对其方式 在父盒子中平分居中*/
+            justify-content: space-around;
+        }
+        section:nth-child(5) ul{
+            /*设置伸缩布局*/
+            display: flex;
+            /*主轴对其方式 在父盒子中两端对齐居中*/
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h3>justify-content: flex-start</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>justify-content: flex-end</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>justify-content: center</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>justify-content: space-round</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>justify-content: space-between</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴方向 flex-direction:column-reverse</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+<section>
+    <h3>主轴方向 flex-direction:column-reverse</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</section>
+</body>
+</html>

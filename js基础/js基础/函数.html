@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        console.log("你好！");
+
+        //调用函数
+        huanying();
+
+        // 定义函数
+        // function就是英语 功能 的意思
+        // 定义名字跟变量名一样规则
+        // 函数不调用 等于白写 调用形式为 函数名加小括号
+        // 定义函数，可以在调用的后面，这是js的特性
+        // 函数的好处：直接调用函数，不用重复写那些语句
+        function huanying() {
+            console.log("欢迎")
+        }
+
+        // 形参与实参个数要相同
+        sayHello("你好啊","吃了吗？")  //实际参数 简称实参，表示真实的数值，字符串
+        function sayHello(a,b) {    //形式参数 简称形参，表示接受的一个值
+            console.log(a);
+            console.log(b);
+        }
+
+//        qiuhe(2,3);
+//        qiuhe("2",3);
+//        function qiuhe(a,b) {
+//            console.log(a+b)
+//        }
+
+        //函数里面可以没有return，如果有，只能有一个，不能有多个return
+        //函数里，return后面不允许书写程序，也就是说写在后面的程序无效
+        console.log(qiuhe(2,3));
+        function qiuhe(a,b) {
+            return a + b;
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

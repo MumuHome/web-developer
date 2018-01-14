@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            color: #999999;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        //获得焦点与失去焦点事件
+        //onfocus onblur
+        function $(id) {
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            $("txt").onblur = function () {  //离开焦点开始判断
+                if ( this.value == "" ){
+                    $("result").style.color = "red";
+                    $("result").innerHTML = "内容不能为空";
+                }else if ( isNaN(this.value) ){    //如果输入的值不是一个数字
+                    $("result").style.color = "red";
+                    $("result").innerHTML = "请输入数字";
+                }else if ( this.value>150 ||  this.value<0 ){
+                    $("result").style.color = "red";
+                    $("result").innerHTML = "请输入正确的分数";
+                }else {
+                    $("result").style.color = "green";
+                    $("result").innerHTML = "输入正确";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    语文:<input id="txt" type="text" ><span id="result">请输入成绩</span>
+</body>
+</html>

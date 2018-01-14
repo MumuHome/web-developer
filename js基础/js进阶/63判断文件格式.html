@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" name="" id="file"><span></span>
+<script charset="utf-8" type="text/javascript">
+    var file = document.getElementById("file");
+    file.onchange = function () {
+        var path = this.value;  //c:/xujuan.html
+        var ad = path.substr(path.lastIndexOf(".")).toUpperCase(); //得到的是后缀名，并转换成大写
+        if (ad == ".JPG" || ad == ".PNG" )
+        {
+            this.nextSibling.innerHTML = "格式正确";
+        }else
+        {
+            this.nextSibling.innerHTML = "格式错误！";
+        }
+    }
+</script>
+</body>
+</html>

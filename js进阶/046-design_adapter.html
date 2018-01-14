@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript" src="../new-text/CommonUtil.js"></script>
+    <script charset="utf-8" type="text/javascript">
+
+        // 适配器 鼠标和键盘接口的插口以前是圆的 买了新的电脑接口是USB的
+        // 解决办法：买个转换器 一头圆 一头USB
+        /*
+        var obj = {
+            srt1:'111',
+            srt2:'222',
+            srt3:'333',
+        }
+        // 适配器
+        function adapter(obj) {
+            interfaceMethod(obj.srt1,obj.srt2,obj.srt3);
+        }
+        // 新电脑
+        function interfaceMethod(x,y,z) {
+            // 复杂的操作
+        }
+        */
+
+        // 企业开发中 javascript库(jq,vue,reast,yui,prototype...)
+        // yohoo(用雅虎的框架，但是以前prototype的程序员刚怎么写还是怎么写)
+
+        //根据id获得指定dom元素
+        //prototype $function（不需要传递任何形参，一个id写一个参数，多个id多个参数）
+        function $() {
+            var elements = [];
+            for (var i=0;i<arguments.length;i++){
+                 var element = arguments[1];
+                if (typeof element == "string" ){
+                    element = document.getElementById(element)
+                }
+                if ( arguments.length = 1 ){
+                    return element;
+                }
+                elements.push(element);
+            }
+            return elements;
+        }
+
+        //yohoo get function（传递了一个参数，不是字符串就是数组）
+        var yahoo = {};
+        yahoo.get = function (el) {
+            if (typeof el == "string"){
+                return document.getElementById(el);
+            }
+            if (el instanceof Array){
+                var elements = [];
+                for ( var i=0;i<el.length;i++){
+                    elements[elements.length] = yahoo.get(el[i]);
+                }
+                return elements;
+            }
+            if (el){
+                return el;
+            }
+            return null;
+        }
+
+        // 适配器
+        yahoo.get = yuitoprototype;
+        function yuitoprototype() {
+            //对于yahoo开发人员来说永远传递一个参数
+            if (arguments.length == 1){
+                var e = arguments[0];
+                return $.apply(window,e instanceof Array?e:[e] );
+            } else {
+                return $.apply(window,arguments)
+            }
+        }
+
+        window.onload = function () {
+            // prototype开发人员习惯的写法
+
+//            var dom = $('inp1','inp2');
+//            alert(dom);
+
+            //yui开发人员习惯的方法
+            var dom = [];
+            dom = yahoo.get(['inp1','inp2']);
+            alert(dom);
+
+
+            // yui我是一个prototype开发人员 按项目经理的说法
+            //var dom = yahoo.get('inp1','inp2');
+            //alert(dom);
+        }
+
+    </script>
+</head>
+<div id="inp1"></div>
+<input id="inp2">
+</html>

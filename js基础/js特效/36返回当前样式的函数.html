@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #demo{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            top: 10px;
+            left: 10px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+<div id="demo"></div>
+<script>
+    var demo = document.getElementById("demo");
+    function getStyle(obj,attr) {   //谁的  哪个属性
+        if ( obj.currentStyle )
+        {
+            return obj.currentStyle[attr];  //ie
+        }else
+        {
+            return window.getComputedStyle(obj,null)[attr]; //w3c
+        }
+    }
+    console.log(getStyle(demo,"width"));
+    console.log(getStyle(demo,"height"));
+    console.log(getStyle(demo,"opacity"));
+</script>
+</body>
+</html>

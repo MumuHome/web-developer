@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>使用get发送数据到服务器</h1>
+<input type="text" id="name">
+<input type="button" value="发送get_ajax请求" id="btn">
+</body>
+</html>
+<script>
+//    绑定点击事件
+    document.querySelector('#btn').addEventListener('click',function () {
+//        发送ajax请求 需要五部
+//        1、创建异步对象(主流浏览器都是一样的)
+        var ajaxObj = new XMLHttpRequest();
+//        2、设置请求的url对象
+//        参数1：请求的方法  参数2：请求的url
+//        get提交的数据是直接追加在url后面
+//        格式是xxx.php?pass=123
+//        这只是一个字符串拼接，动态传递参数写法为：
+//        '07get_sendDate.php?userName='+document.querySelector('input')[0].name;
+//        ajaxObj.open('get','07get_sendDate.php');
+        ajaxObj.open('get','07get_sendDate.php?userName='+document.querySelector('#name').value);
+//        3、发送请求
+        ajaxObj.send();
+
+//        4、注册事件
+//        onreadystatechange 状态改变就会调用
+        ajaxObj.onreadystatechange = function () {
+//        如果在数据请求回来才调用，我们需要手动的写判断逻辑
+//        为了保证数据完整回来，我们会判断两个值
+            if (ajaxObj.readyState == 4 && ajaxObj.status == 200 )
+            {
+//          如果能进入这个判断，说明数据完美的回来了，并且页面是存在的
+//          5、在注册的事件中获取返回的内容，并修改页面的显示
+                console.log('数据回来了');
+//                数据是保存在异步对象的属性中
+                console.log(ajaxObj.responseText);
+//                修改页面的提示
+                document.querySelector('h1').innerHTML = ajaxObj.responseText;
+            }
+        }
+    })
+</script>

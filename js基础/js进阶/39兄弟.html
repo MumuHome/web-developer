@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            var one = document.getElementById("one");
+            var div =  one.nextElementSibling || one.nextSibling;
+            div.style.backgroundColor = "red";
+        }
+
+    </script>
+</head>
+<body>
+<ul>
+    <li>34234</li>
+    <li id="one">34234</li>
+    <li>34234</li>
+    <li>34234</li>
+    <li>34234</li>
+    <li>34234</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 237px;
+            height: 300px;
+            margin:100px auto;
+            /*加上透视*/
+            perspective: 300px;
+        }
+        .box:hover img{
+            transform: rotateY(360deg);
+        }
+        img{
+            transition: all 2s;
+        }
+    </style>
+</head>
+<body>
+<div class="box"><img src="img/y.jpg"></div>
+</body>
+</html>

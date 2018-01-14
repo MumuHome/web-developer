@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            var btn = document.getElementsByTagName("button");
+            var len = btn.length;
+            for ( var i = 0; i<len; i++ ){
+                btn[i].index = i; //给每个btn定义了一个index属性，使其值为i
+                btn[i].onclick = function () {
+                    //获得当前点击的btn的索引
+                    alert(this.index);
+                    //点击完毕之后首先去掉人
+                    for ( var i=0 ; i<len ; i++ ){
+                        btn[i].className = "";
+                    }
+                    //给自己加上类名
+                    this.className = "demo";
+                }
+            }
+        }
+    </script>
+    <style>
+        .demo{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<button>思想原理</button>
+<button>思想原理</button>
+<button>思想原理</button>
+<button>思想原理</button>
+<button>思想原理</button>
+<button>思想原理</button>
+</body>
+</html>

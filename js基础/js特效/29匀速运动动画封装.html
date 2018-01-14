@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: absolute;
+        }
+        #box1{
+            width: 200px;
+            height: 100px;
+            background: yellowgreen;
+            position: absolute;
+            top: 150px;
+        }
+    </style>
+</head>
+<body>
+<button id="btn200">200</button>
+<button id="btn400">400</button>
+<div id="box"></div>
+<div id="box1"></div>
+<script>
+    function $(id) {
+        return document.getElementById(id)
+    }
+    $("btn200").onclick = function () {
+        animate($("box"),200);
+        animate($("box1"),500);
+    };
+    $("btn400").onclick = function () {
+        animate($("box"),400);
+        animate($("box1"),600);
+    };
+
+    //封装匀速直线运动
+    function animate(obj,target) {
+        // 用来判断应该+还是-
+        clearInterval(obj.timer);
+        var speed = obj.offsetLeft < target ? 10: -10;  // 如果 起始位置小于目标位置 那么为正值  否则为负值
+        obj.timer = setInterval(function () {
+            var result = target - obj.offsetLeft;   // 因为他们的差值不会超过10
+            if ( Math.abs(result) <= 10 )   // 如果差值不小于10 说明到位置了
+            {
+                clearInterval(obj.timer);
+                obj.style.left = target + "px";   // 有10px差距
+            } else {
+                obj.style.left = obj.offsetLeft + speed + "px";
+            }
+
+        },30)
+    }
+</script>
+</body>
+</html>

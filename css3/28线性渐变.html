@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 1000px;
+            height: 100px;
+            margin:30px auto;
+            border:1px solid #cdcdcd;
+        }
+        div:nth-child(1){
+            /*从左向右 黄色到绿色渐变*/
+            /*linear-gradient(从左向右,起始颜色,终止颜色)*/
+            background-image: linear-gradient(to right,yellow,green);
+        }
+        div:nth-child(2){
+            /*不写方向 默认从上向下*/
+            background-image: linear-gradient(yellow,green);
+        }
+        div:nth-child(3){
+            /*可以设置线性渐变的角度*/
+            background-image: linear-gradient(0deg,yellow,green);
+        }
+        div:nth-child(4){
+            /*设置多种颜色 */
+            /*linear-gradient(方向，颜色1 区间，颜色2 区间，颜色3 区间...)*/
+            background-image: linear-gradient(to right,yellow 0,red 40%,blue 100%);
+        }
+        div:nth-child(5){
+            background-image: linear-gradient(45deg,yellow 0%,yellow 25%,
+            red 25%,red 50%,
+            blue 50%,blue 75%,
+            green 75%,green 100%);
+        }
+        div:nth-child(6){
+            background-image: linear-gradient(to right,
+            #000 0,#000 25%,
+            #fff 25%,#fff 50%,
+            #000 50%,#000 75%,
+            #fff 75%,#fff 50%
+            );
+            /*background-repeat: no-repeat;*/
+            background-size: 20% 100px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

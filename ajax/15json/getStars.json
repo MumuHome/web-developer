@@ -1,0 +1,17 @@
+[
+  {
+    "name":"徐娟",
+    "skill":"money",
+    "path":"../img/1.jpg"
+  },
+  {
+    "name":"贾玲",
+    "skill":"相声",
+    "path":"../img/2.jpg"
+  },
+  {
+    "name":"巩俐",
+    "skill":"大红灯笼高高挂",
+    "path":"../img/3.jpg"
+  }
+]

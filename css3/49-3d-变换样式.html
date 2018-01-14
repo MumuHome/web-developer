@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .out{
+            width: 500px;
+            height: 500px;
+            border:1px solid #000;
+            background: pink;
+            margin:100px auto;
+            /*透视*/
+            /*设置的是用户的眼睛和屏幕的距离 仅仅只是视觉呈现出3D效果 并不是真正的3D*/
+            transform: rotateY(10deg);
+            /*可以让里面的子盒子保持3d效果，加给父盒子*/
+            /*preserve-3d让里面的子盒子保持3D效果 flat子盒子被扁平化*/
+            transform-style: preserve-3d;
+        }
+        .in{
+            width: 300px;
+            height: 400px;
+            background: red;
+            margin: 50px auto;
+            transition: all 1s;
+            transform: rotateX(44deg);
+            border: 1px solid #000;
+        }
+        /*.out:hover .in{*/
+            /*transform: translateX(100px) rotateY(120deg);*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div class="out">
+    <div class="in"></div>
+</div>
+</body>
+</html>

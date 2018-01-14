@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        // 简单的函数链式调用
+        function Dog() {
+            this.run = function () {
+                alert('dog is run...');
+                return this
+            };
+            this.eat = function () {
+                alert('dog is eat...');
+                return this
+            }
+            this.sleep = function () {
+                alert('dog is sleep...');
+                return this
+            }
+        }
+        var d1 = new Dog();
+        d1.run().eat().sleep();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*多背景拼接*/
+        .box{
+            width: 1000px;
+            height: 1000px;
+            border:1px solid #ccc;
+            margin:100px auto;
+            /*给盒子加多个背景 按照背景的语法格式书写 多个背景使用，隔开
+            且先写的图片优先展示
+            兼容性ie678不兼容 其他都支持 */
+            background: url("img/pic1.jpg") no-repeat left top,
+                        url("img/timg.jpg") no-repeat right bottom;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

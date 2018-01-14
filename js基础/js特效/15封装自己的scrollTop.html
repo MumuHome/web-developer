@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            width: 1000px;
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function scroll() {
+        if (window.pageYOffset != null) //判断是否为除了ie678的其他浏览器
+        {
+            return {
+                left : window.pageXOffset,
+                top : window.pageYOffset
+            }
+        }else if ( document.compatMode == "CSS1Compat" ) //检测是否为怪异模式的浏览器，即没有声明 <!DOCTYPE html> 的页面
+            // document.compatMode == "BACKCompat"是怪异模式
+            // document.compatMode == "CSS1Compat"是已声明
+        {
+            return {
+                left : document.documentElement.scrollLeft,
+                top : document.documentElement.scrollTop
+            }
+        }else {
+            return {
+                left : document.body.scrollLeft,
+                top : document.body.scrollTop
+            }
+        }
+    }
+
+    window.onscroll = function () {
+        console.log(scroll().left);
+        console.log(scroll().top);
+    }
+</script>
+</body>
+</html>

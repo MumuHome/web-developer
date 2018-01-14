@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height: 200px;
+            width: 200px;
+            background: pink;
+            margin: 20px;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            function getClass(classname) {
+                if ( document.getElementsByClassName ){
+                    return document.getElementsByClassName(classname);
+                }
+
+                var arr = [];  //用于返回数组
+                var dom = document.getElementsByTagName("*");
+                for ( var i=0 ; i<dom.length ; i++ ){
+                    var txt = dom[i].className.split(" ");
+                    for ( var j=0 ; j<txt.length ; j++ ){
+                        if ( txt[j] == classname ){
+                            arr.push(dom[i]);
+                        }
+                    }
+                }
+                return arr;
+            }
+//            alert(getClass("demo").length)
+            var text = getClass("demo");
+            for ( var i=0 ; i<text.length ; i++ ){
+                text[i].style.backgroundColor = "red";
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="demo"></div>
+<div></div>
+<div id="one">
+    <div class="demo"></div>
+    <div class="demo txt"></div>
+</div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

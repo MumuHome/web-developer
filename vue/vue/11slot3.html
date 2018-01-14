@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <custom>
+        <!--当写在自定义标签之间的内容，要混合子组件里的模板-->
+        <!--在子组件中加入<slot></slot>标签就加入父组件的html结构 如果html不写内容，那么渲染默认的结构-->
+
+        <!--渲染的数据是父组件中的数据-->
+        {{ message }}
+    </custom>
+</div>
+<script>
+    Vue.component('custom',{
+        data(){
+            return{
+                message:'我是子组件的值'
+            }
+        },
+        template:`
+        <div>
+            <p>我是第一个提醒</p>
+            <p>{{ message }}</p>
+            <slot></slot>
+        </div>
+        `
+    });
+    new Vue({
+        el:'#app',
+        data:{
+            message:'我是父组件的值'
+        }
+    })
+</script>
+</body>
+</html>

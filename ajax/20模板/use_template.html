@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<!--使用模板引擎 导入js文件 该模板引擎不依赖于js 直接就能使用-->
+<script src="js/template-native.js" type="text/javascript"></script>
+<!--使用模板引擎 准备模板-->
+<script type="text/template" id="template">
+    <ul>
+        <li><%=name%></li>
+        <li><%=skill%></li>
+        <ul>
+            <%for( var i=0 ; i<friend.length; i++ ){%>
+                <li><%=friend[i]%></li>
+            <%}%>
+        </ul>
+        <ul>
+            <%for(var i=0;i<brother.length;i++ ){%>
+            <li>名字：<%=brother[i].name%></li>
+            <li>技能：<%=brother[i].skill%></li>
+            <li>价钱：<%=brother[i].price%></li>
+            <%}%>
+        </ul>
+    </ul>
+</script>
+
+<!--使用模板引擎 准备对象 填充模板 设置在界面上-->
+<script>
+    var obj = {
+        name:"路飞",
+        skill:"香蕉机关枪",
+        friend:["美少女战士","叮当猫","皮卡丘"],
+        brother:[
+            {
+                name:"乔巴",
+                skill:"治病",
+                price:"$30"
+            },
+            {
+                name:"巧儿",
+                skill:"睡觉",
+                price:"$99"
+            }
+        ]
+    };
+//    调用模板引擎的方法
+    var str = template('template',obj);
+    console.log(str);
+    document.body.innerHTML = str;
+</script>

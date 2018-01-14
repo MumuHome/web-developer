@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <custom>
+        <!--当写在自定义标签之间的内容，要混合子组件里的模板-->
+        <!--在子组件中加入<slot></slot>标签就加入父组件的html结构 如果html不写内容，那么渲染默认的结构-->
+        <div slot="one">替换第一个提醒</div>
+        <div slot="three">替换第三个提醒</div>
+        <!--使用name与slot建立联系-->
+        <template slot="two">
+            <div>替换第二个提醒</div>
+            <div>替换第二个提醒</div>
+            <div>替换第二个提醒</div>
+            <div>替换第二个提醒</div>
+        </template>
+        <slot>替换无名的slot</slot>
+    </custom>
+</div>
+<script>
+    Vue.component('custom',{
+        template:`
+        <div>
+                <slot name="one">
+                    <h2>这是第一个提醒</h2>
+                </slot>
+                <slot name="two">
+                    <h2>这是第二个提醒</h2>
+                </slot>
+                <slot name="three">
+                    <h2>这是第三个提醒</h2>
+                </slot>
+                <slot>
+                    <h2>无名的slot</h2>
+                </slot>
+        </div>
+        `
+    })
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        console.log(yinshugeshu(48));
+        // 因数个数函数，输入一个数字，返回这个数字的因数个数
+        function yinshugeshu(num) {
+            var sum = 0;
+            for ( var i=1 ; i<=num ; i++ ){
+                if ( num%i == 0 ){
+                    sum = sum + 1;
+                }
+            }
+            return sum;
+        }
+
+        //输入一个数字，返回这个数字的百位数
+        console.log(baiwei(444));
+        function baiwei(num) {
+            return parseInt(num/100);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

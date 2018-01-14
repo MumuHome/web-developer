@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入的核心js公共文件-->
+    <script type="text/javascript" charset="utf-8" src="../new-text/CommonUtil.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        // 细粒度 和 粗粒度
+        // 万事万物都是object 卖车的商店->卖车->生产车->工厂
+        // 搭建一个工厂的环境
+        // 卖车的商店 （把没有关系的东西筛选出来，放到合适的地方）
+        function CarShop() {};
+        CarShop.prototype = {
+            constructor:CarShop,
+            sellCar:function (type) {
+                // 销售人员
+                var car = CarFactory.createCar(type);
+                // 保险、相关售后服务
+                return car;
+            }
+        };
+        // 生产车的工厂 目的就是为了生产车
+        // 单体模式
+        var CarFactory = {
+            createCar:function (type) {
+                var car; // 声明一个变量
+                switch (type){
+                    case 'Benz':Car = new Benz();break;
+                    case 'Bmw':Car = new Bmw();break;
+                    case 'Audi':Car = new Audi();break;
+                    default:'not buy it';
+                };
+                XJ.Interface.ensureImplements(car,CarInterface);// 检验接口实现
+                return car;
+            }
+        }
+
+        // 接口对象
+        var CarInterface = new XJ.Interface('CarInterface',['start','run']);
+        // super class implements CarInterface
+        function BaseCar() {};
+        BaseCar.prototype = {
+            constructor : BaseCar,
+            start:function () {
+                alert(this.constructor.name + 'start')
+            },
+            run:function () {
+                alert(this.constructor.name + 'run')
+            }
+        }
+        //class benz bmw audi (都是车)
+        // 注意关键问题 子类先继承父类 子杰再扩展自己特有的方法
+        function Benz() {};
+        XJ.extend(Benz,BaseCar);
+        Benz.prototype.driveB = function () {
+            alert('Benz..drive')
+        };  // 加一个奔驰特有的方法
+//        Benz.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Benz.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        function Bmw() {};
+        XJ.extend(Bmw,BaseCar);
+//        Bmw.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Bmw.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        function Audi() {};
+        XJ.extend(Audi,BaseCar);
+//        Audi.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Audi.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        var shop = new CarShop();
+        var Car = shop.sellCar('Benz');
+        Car.start();
+        Car.run();
+        Car.driveB();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

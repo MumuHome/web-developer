@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    function eatFood(food) {
+        console.log(food);
+    }
+</script>
+<!-- 使用script标签 发送了get请求 去到了一个php页面 -->
+<script src="02jsonP.php?callback=eatFood" type="text/javascript"></script>
+
+<!-- jq页面已经帮助我们封装好了jsonp的请求 直接使用即可 -->
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 500px;
+            padding: 20px;
+            height: auto;
+            border: 1px solid #999999;
+            margin: 50px auto;
+        }
+        textarea{
+            width: 350px;
+            resize: none;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            position: relative;
+            width: 450px;
+            line-height: 30px;
+            color: #666;
+            border-bottom: 1px solid #cccccc;
+        }
+        .delete{
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            font-size: 18px;
+            color: pink;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            //获取对象  操作对象
+            var btn = document.getElementsByTagName("button")[0];
+            var txt = document.getElementsByTagName("textarea")[0];
+            var ul = document.createElement("ul");  //创建ul
+            btn.parentNode.appendChild(ul);
+            btn.onclick = function () {
+                if ( txt.value == "" )
+                {
+                    alert("输入不能为空");
+                    return; //  终止函数执行  不写else的话需要终止退出
+                }
+                var li = document.createElement("li");
+                li.innerHTML = txt.value + "<a class='delete'>删除</a>";   //  把表单的值给li
+                ul.insertBefore(li,ul.children[0]); //让新发布的内容靠上显示
+                txt.value = ""; //发布后清空输入区的内容
+
+                var dele = document.getElementsByTagName("a");
+                for ( var i=0; i<dele.length ; i++ )
+                {
+                    dele[i].onclick = function () {
+                        ul.removeChild(this.parentNode);    //删除ul的孩子，这个孩子是点击元素的父亲
+                    }
+                }
+
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    微博发布:<textarea cols="30" rows="10"></textarea><button>发布</button>
+</div>
+</body>
+</html>

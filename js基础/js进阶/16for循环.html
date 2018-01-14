@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        function $(id) {
+            return document.getElementById(id)
+        }
+        window.onload = function () {
+            $("btn").onclick = function () {
+                if ( $("txt").value == "徐娟" ){
+                    alert("恭喜中奖")
+                }else {
+                    alert("查无此人")
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input id="txt" type="text" value="请输入..."><button id="btn">查询</button>
+</body>
+</html>

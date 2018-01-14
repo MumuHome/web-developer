@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            position: fixed;
+        }
+        #left{
+            top: 0;
+            left: 0;
+        }
+        #right{
+            top: 0;
+            right: 0;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            function $(id) {
+                return document.getElementById(id)
+            }
+            function hide(id) {
+                $(id).style.display = "none";
+            }
+            function show(id) {
+                $(id).style.display = "block";
+            }
+            setTimeout(closeAd,5000);
+
+            function closeAd() {
+                hide("left");
+                hide("right")
+            }
+
+        }
+    </script>
+</head>
+<body>
+<img src="img/1.gif" id="left">
+<img src="img/2.gif" id="right">
+</body>
+</html>

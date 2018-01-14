@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<button id="btn200">200</button>
+<button id="btn400">400</button>
+<div id="run"></div>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    $("btn200").onclick = function () {
+        animate($("run"),200);  //animate自定义函数
+        //第一个参数是谁动，第二个参数是目标位置
+    };
+
+    $("btn400").onclick = function () {
+        animate($("run"),400);
+    };
+
+    //运动函数
+    function animate(obj,time) {
+        obj.timer = setInterval(function () {   //自定义属性
+            if ( obj.offsetLeft > time )
+            {
+                clearInterval(obj.timer)
+            } else
+            {
+                obj.style.left = obj.offsetLeft + 10 + "px";
+            }
+
+        },30)
+    }
+</script>
+</body>
+</html>

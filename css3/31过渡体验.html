@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            margin:200px auto;
+            border:1px solid #ccc;
+            background: red;
+            /*过渡属性 必须加给盒子本身*/
+            /*transition: width 1s,background 1s;*/
+            /*如果多个过渡变化的特性是一样的 可以简写*/
+            /*transition:过渡属性 持续时间 运动节奏 延迟时间*/
+            transition: all 1s linear 1s;
+        }
+        .box:hover{
+            width: 600px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" value="" id="name"><br>
+<input type="button" value="发送ajax请求" id="btnAjax">
+</body>
+</html>
+<script>
+//    获取按钮 绑定点击事件
+    document.querySelector('#btnAjax').addEventListener('click',function(){
+//        创建异步对象
+        var ajax = new XMLHttpRequest();
+//        url方法
+//        获取标签中的值
+        var name = document.querySelector("#name");
+        ajax.open('get','08ajax.php?name='+name.value);
+//        发送
+        ajax.send();
+//        注册事件
+//        ajax状态改变事件
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState == 4 && ajax.status == 200)
+            {
+//                获取返回的数据
+                console.log(ajax.responseText);
+            }
+        }
+    })
+</script>

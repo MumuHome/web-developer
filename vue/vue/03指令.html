@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <!--v-bind:把想要渲染的指令渲染在行间，可简写为:，没有这个值的时候，id不改变-->
+    <span v-bind:spanId="id">{{ message }}</span>
+</div>
+<script>
+    //    数据
+    let obj = {
+        message:'hello vue',
+        id:'123'
+    }
+    //    声明式渲染
+    var vm = new Vue({
+        el:'#demo',
+        data:obj
+    });
+
+</script>
+</body>
+</html>

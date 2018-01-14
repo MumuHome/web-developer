@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="demo" :custom="abc">
+    <!--支持简单的运算和三目运算-->
+    {{ true?'yes':'no' }}
+    <!--要把v-html赋一个html的值-->
+    <div v-html="html"></div>
+    <span>原来html里的内容</span>
+</div>
+<script type="x-template" id="temp">
+    <div>
+        <h1>模板引擎题目</h1>
+        <p>模板引擎内容</p>
+    </div>
+</script>
+<script>
+    //    数据
+    let obj = {
+//        这种html怎样在页面中渲染成dom 在demo中把v-html赋一个html的值
+        html:'<div>html元素里的内容</div>',
+        abc:1
+    };
+
+    //    声明式渲染
+    var vm = new Vue({
+        el:'#demo',
+        data:obj,
+//        str的内容会替换id=demo的div
+        template:"#temp"
+    });
+
+</script>
+</body>
+</html>

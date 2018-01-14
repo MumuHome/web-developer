@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="demo" :custom="abc">
+    <div v-html="html"></div>
+    <span>原来html里的内容</span>
+</div>
+<script>
+    //    数据
+    let obj = {
+//        这种html怎样在页面中渲染成dom 在demo中把v-html赋一个html的值
+        html:'<div>html元素里的内容</div>',
+        abc:1
+    };
+
+    //    声明式渲染
+    var vm = new Vue({
+        el:'#demo',
+        data:obj,
+//        createElement(标签名，数据对象（可省略），子元素)
+        render(createElement){
+            return createElement(
+//                第一个参数：标签名字
+                'ul',
+//                第二个参数：标签内容
+                [createElement('li',1),createElement('li',2)]
+            );
+        }
+    });
+
+</script>
+</body>
+</html>

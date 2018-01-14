@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        img{
+            display: block;
+            width: 100%;
+        }
+        .item{
+            display: flex;
+            height: 90px;
+            background: deeppink;
+            margin:4px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .item .left{
+            flex: 1;
+            border-right: 1px solid white;
+        }
+        .item .right{
+            flex: 2;
+            overflow: hidden;
+        }
+        .right a{
+            float: left;
+            width: 50%;
+            line-height: 45px;
+            box-sizing: border-box;
+            border-left:1px solid white;
+            border-right:1px solid white;
+        }
+        .right a:nth-child(1),.right a:nth-child(2){
+            border-bottom:1px solid white;
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <div class="banner">
+        <a href="#" class="banner"><img src="img/banner.jpg"></a>
+    </div>
+    <div class="nav">
+        <div class="item">
+            <div class="left"></div>
+            <div class="right">
+                <a href="#">海外酒店</a>
+                <a href="#">团购</a>
+                <a href="#">青年旅社</a>
+                <a href="#">客栈公寓</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

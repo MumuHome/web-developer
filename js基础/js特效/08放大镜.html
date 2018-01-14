@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #bigbox{
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #cccccc;
+        }
+        #bigimg{
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            top: 0;
+            left: 360px;
+            border: 1px solid #cccccc;
+            overflow: hidden;
+            display: none;
+        }
+        #block{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba( 255,255,0,0.4);
+            top:0;
+            left:0;
+            cursor: move;
+            display: none;
+        }
+        #img{
+            position: relative;
+        }
+        #bigimg img{
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<div id="bigbox">
+    <div id="img">
+        <img src="img/001.jpg">
+        <div id="block"></div>
+    </div>
+    <div id="bigimg">
+        <img src="img/0001.jpg">
+    </div>
+</div>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    var bigimg = document.getElementById("bigimg").children[0];    //得到大盒子里面的图片
+    $("img").onmouseover = function () {
+        $("block").style.display = "block";
+        $("bigimg").style.display = "block";
+    }
+    $("img").onmouseout = function () {
+        $("block").style.display = "none";
+        $("bigimg").style.display = "none";
+    }
+
+    var x =0,y=0;
+    $("img").onmousemove = function (event) {
+        var event = event || window.event;
+        x = event.clientX - $("bigbox").offsetLeft - $("block").offsetWidth/2;
+        y = event.clientY - $("bigbox").offsetTop - $("block").offsetHeight/2;
+        if ( x<0 )
+        {
+            x=0;
+        }else if ( x> $("img").offsetWidth - $("block").offsetWidth )
+        {
+            x=$("img").offsetWidth - $("block").offsetWidth;
+        }else if ( y<0 )
+        {
+            y=0;
+        }else if ( y> $("img").offsetWidth - $("block").offsetWidth )
+        {
+            y=$("img").offsetWidth - $("block").offsetWidth;
+        }
+        //小的黄色半透明方块的位置有改变
+        $("block").style.left = x + "px";
+        $("block").style.top = y + "px";
+
+        //大图片的位置
+        bigimg.style.left = -x * 450/350 + "px"; //450是大图的宽度 350是小图的宽度
+        bigimg.style.top = -y * 450/350 + "px";
+
+     }
+
+
+</script>
+</body>
+</html>

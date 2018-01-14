@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="ul">
+    <li>144</li>
+    <li>144</li>
+    <li>144</li>
+    <li>144</li>
+</ul>
+<script charset="utf-8" type="text/javascript">
+    var ul = document.getElementById("ul");
+    var child = ul.childNodes; //选择全部的孩子 亲的
+    for ( var i=0 ; i<child.length ; i++){
+        if ( child[i].nodeType == 1 ){
+            child[i].style.backgroundColor = "red";
+        }
+    }
+    //    alert(child.length)
+
+
+    var childDom = ul.children; //选取全部的孩子
+    alert(childDom.length)
+
+</script>
+</body>
+</html>

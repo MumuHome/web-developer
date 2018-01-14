@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>ajax发送post</h1>
+<input type="text" placeholder="请输入你爱吃的食物" id="food">
+<input type="button" value="ajax的post请求" id="btn">
+</body>
+</html>
+<script>
+    document.querySelector("#btn").addEventListener('click',function(){
+//        创建一个异步请求
+        var ajax = new XMLHttpRequest();
+//        使用post请求
+        ajax.open('post','09ajax_post.php');
+//        如果使用post发送数据，必须设置下面内容
+//        使用setRequestHeader来添加HTTP头，然后在send()方法中规定希望发送数据
+//        修改发送给服务器的请求报文内容
+        ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+//        发送
+//        post请求 发送的数据写在send方法中
+//        格式 name=jack&age=18 字符串形式
+        ajax.send('name=jack&age=998');
+//        注册事件
+        ajax.onreadystatechange = function () {
+            if ( ajax.readyState==4 && ajax.status==200 )
+            {
+                console.log(ajax.responseText);
+            }
+        }
+    })
+</script>

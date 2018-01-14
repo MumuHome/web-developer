@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是一个变量测试文档</title>
+    <script type="text/javascript" charset="utf-8">
+        /*
+        //全局变量与局部变量的区别
+        var a = 3; //number   全局变量
+        //变量一共有两种：全局变量和局部变量
+        function test() {
+            var a = 3;  //局部变量
+            c = 2; //全局变量（不推荐）
+            alert('a')
+        }
+        test();
+        */
+
+        //number类型 整数和小数
+        var a1 = 10;
+        var a2 = 10.5;
+        var a3 = NaN;
+        var a4 = 1/0;  //在js中不会报错 结果为正无穷
+        //还可以通过八进制和十六进制来表示
+        var a5 = 070; //八进制表示方法
+        //alert(a5);
+
+        /*
+        浮点数最高精度为17位，
+        var a6 = 0.1;
+        var a7 = 0.2;
+        if ( a6 + a7 == 0.3){
+            alert('等于0.3')
+        }else{
+            alert('不等于0.3')
+        }
+        */
+        var a8 = parseInt("aaabbb"); //parseInt将字符转化为int类型，不能转换
+        alert(a8);//输出NaN，即不是数字
+
+        //undefined 数据类型只有一个值 表示变量声明了但没有被赋值
+        var b1;
+        //alert(b1);
+        var b2 = null;
+        alert(b2);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

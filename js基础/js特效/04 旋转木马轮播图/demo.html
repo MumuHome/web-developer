@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>旋转木马轮播图</title>
+    <link rel="stylesheet" href="css/css.css"/>
+</head>
+<body>
+<div class="wrap" id="wrap">
+   <div class="slide" id="slide">
+       <ul id="ul">
+           <li><a href="#"><img src="images/slidepic1.jpg" alt=""/></a></li>
+           <li><a href="#"><img src="images/slidepic2.jpg" alt=""/></a></li>
+           <li><a href="#"><img src="images/slidepic3.jpg" alt=""/></a></li>
+           <li><a href="#"><img src="images/slidepic4.jpg" alt=""/></a></li>
+           <li><a href="#"><img src="images/slidepic5.jpg" alt=""/></a></li>
+       </ul>
+       <div class="arrow" id="arrow">
+           <a href="javascript:;" class="prev"></a>
+           <a href="javascript:;" class="next"></a>
+       </div>
+   </div>
+</div>
+</body>
+</html>
+<script src="js/animate.js" type="text/javascript"></script>
+<script>
+    var big = document.getElementById("wrap");
+    var arrow = document.getElementById("arrow");
+    var ul = document.getElementById("ul");
+    var lis = ul.children;
+    big.onmouseover = function () {
+        animate(arrow,{opacity : 100});
+    }
+    big.onmouseout = function () {
+        animate(arrow,{opacity : 0});
+    }
+    //存储每个图片的信息
+    var json = [
+        {
+            //1
+            width:400,
+            top:20,
+            left:50,
+            opacity:20,
+            z:2
+        },
+        {
+        //2
+            width:600,
+            top:70,
+            left:0,
+            opacity:80,
+            z:3
+        },
+        {
+            //3
+            width:800,
+            top:100,
+            left:200,
+            opacity:100,
+            z:4
+        },
+        {
+            //4
+            width:600,
+            top:70,
+            left:600,
+            opacity:80,
+            z:3
+        },
+        {
+            //5
+            width:400,
+            top:20,
+            left:800,
+            opacity:20,
+            z:2
+        }
+    ]
+    change();
+    //两个按钮
+    //函数节流
+    var jieliu = true;//用来控制函数节流
+    var as = arrow.children;
+    for ( var k in as )
+    {
+        as[k].onclick = function () {
+            if ( this.className == "prev" )
+            {
+                if ( jieliu == true )
+                {
+                    change(false);
+                    jieliu = false;
+                }
+
+            }else
+            {
+                if ( jieliu == true )
+                {
+                    change(true);
+                    jieliu = false;
+                }
+            }
+        }
+
+    }
+    //往前走还是往后走
+    function change(flag) {
+        if ( flag )
+        {
+            json.unshift(json.pop());//删掉最后一个，放到最前面
+        }else
+        {
+            json.push(json.shift());//删掉前面一个，放到最后面
+        }
+        for ( var i=0 ; i<lis.length ; i++ )
+        {
+            animate(lis[i],{
+                width:json[i].width,
+                top:json[i].top,
+                left:json[i].left,
+                opacity:json[i].opacity,
+                zIndex:json[i].z
+            },function () {
+                jieliu = true;
+            })//回调函数等动画执行完毕后执行
+        }
+    }
+</script>

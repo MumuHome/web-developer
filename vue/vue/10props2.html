@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>父组件使用了count</h2>
+    <p>{{ count }}</p>
+    <!--要想让父组件获得子组件的改变 使用自定义事件并绑定事件处理程序-->
+    <custom-component :count="count" @changeclick="updateData"></custom-component>
+</div>
+<script>
+    Vue.component('custom-component',{
+//        保证count传入的数据为num
+        props:{
+            count:{
+//                定义数据类型为num
+//                type:Number,
+////                定义默认值为10
+//                default:10,
+////                定义这个值是必填的
+//                required:true
+//                自定义验证规则
+                validator:function (value) {
+//                    value就是count的值
+//                    必须要有返回值 且为布尔值
+                    return value<10
+                }
+            }
+        },
+//        计算属性依赖于data
+        computed:{
+        },
+        data(){
+            return {
+//                作为局部组件data的初始值
+                newCount:this.count
+            }
+        },
+        template:`
+        <div>
+            <h2>我是一个自定义组件{{ newCount }}</h2>
+            <input type="button" value="改变count的值" @click="changeCount">
+        </div>
+        `,
+        <!--父组件传过来的数据不能直接改变-->
+//        想要改可以1、把传入的值作为初始值，进行运算 2、利用计算属性
+        methods:{
+            changeCount:function () {
+                this.newCount ++;
+//                alert(this.newCount);
+//                通知父组件点击了 参数一：事件名
+                this.$emit('changeclick',this.newCount);
+            }
+        }
+    });
+    new Vue ({
+        el:"#app",
+        data:{
+            count:0
+        },
+        methods:{
+            updateData:function (data) {
+                this.count = data;
+            }
+        }
+    })
+</script>
+</body>
+</html>

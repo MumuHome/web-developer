@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //Global全局的 终极的 兜底的 对象（不存在的）
+
+        var uri = 'http://www.zl.com cn';
+        //编码
+        var str1 = encodeURI(uri);// uri中     ：或/ 都不会进行编码
+        var srt2 = encodeURIComponent(uri);//常用的方法，任何不标准的文字都会进行编码
+        //解码
+        alert(decodeURI(str1));
+        alert(decodeURIComponent(str1));
+
+        //eval(string)方法 无形的JavaScript解析器
+        /*
+        var str1 = " var a = 10; var b = 20;";
+        eval(str1);
+        alert(a + b);
+
+        var strobj = "{name : 'z3', age : 20 }";
+        var obj = eval('('+ strobj +')');
+        alert(obj.name);
+        */
+
+        /*
+        //parseInt parseFloat
+        var num1 = parseInt('30');
+        var num2 = parseFloat('30.2');
+        alert(num1 + ' ' + num2);
+        alert(typeof num1);
+        alert(typeof num2);
+        */
+
+        /*
+        var str1 = '徐娟';
+        var str2 = escape(str1);
+        alert(str2);
+        var str3 = unescape(str2);
+        alert(str3);
+        */
+
+        /*
+        //isNaN 如果不是number类型 则返回true 是number 则返回false；
+        var num1 = 10;
+        var num2 = 'jsbfiudshf';
+        alert(isNaN(num1));
+        alert(isNaN(num2));
+        //在js里面 只有isNaN不等于自己本身的
+        */
+
+        //Date 日期类型
+        var date = new Date();
+        //alert(dare);
+        var year = date.getFullYear();//获得年
+        var month = date.getMonth() + 1;//外国月份需要+1;
+        var da = date.getDate();
+        var hours = date.getHours();
+        var min = date.getMinutes();
+        var second = date.getSeconds();
+        document.write('今天是' + year + '年' + month + '月' + da + '日' + hours + '时' + min + '分' + second + '秒' );
+
+        alert(date.getTime());//获得当前时间的毫秒数
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

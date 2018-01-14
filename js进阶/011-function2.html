@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" charset="utf-8">
+        //函数的三种定义方式
+        // 1、function语句形式
+        function test1() {
+            alert('我是函数的执行体')
+        }//只会被编译一次放在内存里 占用内存 JavaScript解析器会有限解释这种形式
+
+        // 2、函数的直接量 ECMAScript
+        var test2 = function () {
+            alert('我是函数2的执行体')
+        }
+
+        // 3、function构造函数式
+        var test3 = new Function("a","b","return a+b;");//两个参数及运算
+        alert(test3(10,20))
+        //不占用内存 但效率很低
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

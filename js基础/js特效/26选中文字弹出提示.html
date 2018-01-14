@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height: 400px;
+            width: 400px;
+            margin: 20px;
+        }
+        #demo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<span id="demo"></span>
+<div id="test">徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人徐娟是个大好人</div>
+<div id="another">徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人徐娟不是坏人</div>
+
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    $("test").onmouseup = function (event) {
+        var event = event || window.event;
+        var x = event.clientX;
+        var y = event.clientY;
+        var txt;    //用于存储文字的变量
+        if ( window.getSelection )
+        {
+            txt = window.getSelection().toString();   //转化为字符串
+        }else
+        {
+            txt = document.selection.createRange().text;   //ie写法 转化为字符串
+        }
+
+        //  看看有没有选中的文字，没有选中文字为空，就不应该执行
+        if ( txt )   // 所有的字符为真，""是假  所有的数字为真，0为假
+        {
+            showBox(x,y,txt);
+        }
+
+        document.onmousedown = function (event) {
+            var event = event || window.event;
+            var targetId = event.target ? event.target.id : event.srcElement.id ;
+            if ( targetId != "demo" )
+            {
+                hiddenBox();    //点击空白处隐藏
+            }
+        }
+
+    }
+
+
+
+    function showBox(mousex,mousey,txt) {
+        setTimeout(function () {
+            $("demo").style.display = "block";
+            $("demo").style.left = mousex + "px";
+            $("demo").style.top = mousey + "px";
+            $("demo").innerHTML = txt;
+        },200)
+    }
+
+    function hiddenBox() {
+        $("demo").style.display = "none"
+    }
+</script>
+</body>
+</html>

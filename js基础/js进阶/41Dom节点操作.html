@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="dom">
+    <div id="one"></div>
+</div>
+<script charset="utf-8" type="text/javascript">
+    var demo = document.getElementById("dom");
+    var child = demo.children;
+    var one = document.getElementById("one");
+    //创建节点
+    var firstDiv = document.createElement("nav");
+    demo.appendChild(firstDiv);//这个节点插入到dom里的最后一个节点
+
+    var text = document.createElement("div");
+    demo.insertBefore(text,child[0]);
+
+    demo.removeChild(text);     //移除text这个孩子
+    demo.appendChild(child[0].cloneNode());     //demo里面增加一个孩子 这个孩子是child[0]的克隆节点
+    demo.parentNode.appendChild(demo.cloneNode(true));  //demo父级添加孩子，即给demo加兄弟
+
+</script>
+</body>
+</html>

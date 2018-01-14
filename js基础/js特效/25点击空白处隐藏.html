@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        #mask{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.4;   /*半透明*/
+            filter: alpha(opacity = 40);    /*ie6 半透明 */
+            background: #000;
+            display: none;
+        }
+        #show{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -150px;
+            width: 300px;
+            height: 300px;
+            background: white;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a href="javascript:;" id="zhuce">注册</a> <a href="javascript:;" id="denglu">登录</a>
+<div id="mask"></div>
+<div id="show"></div>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    $("zhuce").onclick = function (event) {
+        document.body.style.overflow = "hidden";
+        $("mask").style.display = "block";
+        $("show").style.display = "block";
+        var event = event || window.event;
+        //因为zhuce属于document中的一部分，点击zhuce就是点击document，因此需要阻止冒泡
+        if ( event && event.stopPropagation )
+        {
+            event.stopPropagation();
+        }else
+        {
+            event.cancelBubble = true;
+        }
+    }
+
+    document.onclick = function (event) {
+        var event = event || window.event;
+        //兼容性写法 如果支持event.target写法 则为event.target.id，不支持则为event.srcElement.id
+        var targetId = event.target ? event.target.id : event.srcElement.id;
+        if ( targetId != "show" )   //如果点击的元素id不是当前show元素，那么其他的元素隐藏
+        {
+            document.body.style.overflow = "visible";   // 显示滚动条
+            $("mask").style.display = "none";
+            $("show").style.display = "none";
+        }
+
+    }
+
+</script>
+</body>
+</html>

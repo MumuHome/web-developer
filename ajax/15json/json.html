@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>获取一个明星信息</h1>
+<input type="button" value="获取json" id="btn">
+<script>
+    document.querySelector("#btn").onclick = function () {
+        var ajax = new XMLHttpRequest();
+        ajax.open('get','getJson.php');
+        ajax.send();
+        ajax.onreadystatechange = function () {
+            if ( ajax.readyState == 4 && ajax.status ==200 )
+            {
+                var jsObj = JSON.parse(ajax.responseText);
+//                拼接ul
+                var str = '';
+                str+='<ul>';
+                str+='<li>'+jsObj.name+'</li>';
+                str+='<li>'+jsObj.age+'</li>';
+                str+='<li>'+jsObj.skill+'</li>';
+                str+='</ul>';
+            }
+            document.body.innerHTML = str;
+        }
+    }
+</script>
+</body>
+</html>

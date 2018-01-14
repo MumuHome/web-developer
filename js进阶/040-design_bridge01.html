@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript" src="../new-text/CommonUtil.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../new-text/jQuery.js"></script>
+    <script charset="utf=8" type="text/javascript">
+        // 桥接模式：主要作用就是把抽象和现实分离开，使他们可以完全独立变化
+
+        // 应用场景：事件监听回调机制（用户点击一个按钮，向服务器端发送信息）
+        // 当页面加载完毕 执行函数体 window.onload
+        // classic
+        /*
+        $(function () {
+            // 1、前台业务逻辑
+            var inp = document.getElementById('inp');
+            // 用事件注册的方式向元素上添加事件
+            XJ.EventUtil.addHandler(inp,'click',sendReq);
+            //----------------------------------------------------
+            // 2、后台业务逻辑
+            //处理后台的函数
+            function sendReq() {
+                // ajax 利用post方法向服务器发送异步post请求
+                // 参数1：后台服务器的地址 参数2：一个对象或字符串（参数） 参数3：回调函数
+                $.post('URL',{msg:this.value},function (result) {
+                    // callback...
+                });
+                alert('发送了指定的数据到后台：'+this.value)
+            }
+        })
+        */
+
+        // 利用桥模式，分开两个业务逻辑单元
+        $(function () {
+            // 1、前台业务逻辑（这段代码处理前台监听事件注册和绑定的）
+            var inp = document.getElementById('inp');
+            // 用事件注册的方式向元素上添加事件
+            XJ.EventUtil.addHandler(inp,'click',bridgeHandler);
+            //利用桥模式分开
+            function bridgeHandler() {
+                var msg = this.value;
+                sendReq(msg);
+            }
+
+            //----------------------------------------------------
+            // 2、后台业务逻辑（这段代码是处理后台发送请求的）  直接不用借助前台，测试后台
+            //处理后台的函数
+            function sendReq(msg) {
+                // ajax 利用post方法向服务器发送异步post请求
+                // 参数1：后台服务器的地址 参数2：一个对象或字符串（参数） 参数3：回调函数
+                //$.post('URL',{msg:this.value},function (result) {
+                    // callback...
+                //});
+                alert('发送了指定的数据到后台：'+msg)
+            }
+        })
+
+    </script>
+</head>
+<body>
+    <input id="inp" type="button" value="我是数据"/>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: absolute;
+            top: 80px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<button id="btn200">200</button>
+<button id="btn400">400</button>
+<div id="box"></div>
+<script>
+    var btn200 = document.getElementById("btn200");
+    var btn400 = document.getElementById("btn400");
+    var box = document.getElementById("box");
+    btn200.onclick = function () {
+        animate(box,"width",500);
+    }
+    btn400.onclick = function () {
+        animate(box,"top",400);
+    }
+    //封装单个属性运动框架
+    function animate(obj,attr,target) { //给谁 什么属性  改为多少
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            //动画原理  盒子本身样式 + 步长
+            //先得到当前的样式，然后用target减去
+            var current = parseInt(getStyle(obj,attr)); //别忘记去掉单位
+            var step = (target - current)/10;
+            step = step > 0? Math.ceil(step):Math.floor(step);
+            //要做动画了
+            obj.style[attr] = current + step + "px";
+            if ( current == target )
+            {
+                clearInterval(obj.timer);
+            }
+        },30)
+    }
+
+
+
+    function getStyle(obj,attr) {   //谁的  哪个属性
+        if ( obj.currentStyle )
+        {
+            return obj.currentStyle[attr];  //ie
+        }else
+        {
+            return window.getComputedStyle(obj,null)[attr]; //w3c
+        }
+    }
+
+</script>
+</body>
+</html>

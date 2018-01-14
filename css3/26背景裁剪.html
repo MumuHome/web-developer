@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border:30px solid rgba(255,255,0,0.3);
+            padding: 30px;
+            /*背景图片默认平铺的位置 从padding开始*/
+            background: url("img/pic1.jpg") no-repeat;
+            background-size: 200px 200px;
+            /*背景原点 控制背景从什么地方开始显示*/
+            /*background-origin: padding-box;*/
+            /*从border开始显示*/
+            /*background-origin: border-box;*/
+            background-origin: content-box;
+            /*背景裁剪*/
+            /*border-box*/
+            /*padding-box*/
+            /*content-box*/
+            background-clip: padding-box;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

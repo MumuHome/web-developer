@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 226px;
+            margin: 200px auto;
+            /*透视 加给父盒子 */
+            /*设置的是用户的眼睛距离 距离越小离得越近变化越大 距离越大离得越远变化越小*/
+            /*透视效果只是视觉上的呈现 并不是真正的3D*/
+            perspective: 200px;
+            /*所有的3D旋转，对着正方向看，都是顺时针旋转*/
+        }
+        .box:hover img{
+            transform: rotateX(360deg);
+        }
+        img{
+            transition: all 2s;
+        }
+    </style>
+</head>
+<body>
+<div class="box"><img src="img/x.jpg"></div>
+</body>
+</html>
