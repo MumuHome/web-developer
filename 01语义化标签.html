@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--语言为英文-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*初始化进度条css*/
+        .my-progress{
+            -webkit-appearance: none;
+        }
+        .my-progress::-webkit-progress-bar{
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #dcdcdc;
+        }
+        .my-progress::-webkit-progress-value{
+            background: yellowgreen;
+            border-radius: 10px;
+        }
+        .content::after{
+            content: "bbbbbbbb";
+            color: red;
+        }
+    </style>
+    <script>
+        //告诉浏览器这是一个标签 html5shiv.js 兼容组件
+        document.createElement("header");
+    </script>
+</head>
+<body>
+<div class="content">aaaaaa</div>
+<!--数据列表呈现需要通过载体 -->
+<h2>数据列表</h2>
+<input type="text" list="datalist">
+<datalist id="datalist">
+    <option value="星期一"></option>
+    <option value="星期二"></option>
+    <option value="星期三"></option>
+    <option value="星期四"></option>
+</datalist>
+<br>
+<!-- 进度条  状态指示器 -->
+<h2>进度条</h2>
+<progress></progress>
+<!-- 默认最大值是1 -->
+<progress class="my-progress" value="0.3"></progress>
+<br>
+<h2>Meter</h2>
+<!-- 兼容性不好 -->
+<meter value="91" min="0" max="100" low="40" high="90" optimum="100">A+</meter>
+</body>
+</html>
