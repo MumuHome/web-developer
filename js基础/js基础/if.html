@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+
+//        var a = 10;
+//        if (a>10){
+//            console.log('哈哈');
+//        }else {
+//            console.log('嘻嘻')
+//        }
+//        var age = prompt("请输入密码");
+//        if (age == 123 ){
+//            alert("正确")
+//        } else {
+//            alert("错误")
+//        }
+
+        //多分支的if语句和跳楼现象
+//        var x = prompt("请输入成绩");
+//        if ( x>=85 ){
+//            alert("优秀！")
+//        }else if ( x>=70 ){
+//            alert("及格！")
+//        }else if ( x>=60 ){
+//            alert("及格！")
+//        }else {
+//            alert("不及格！")
+//        }
+        // 跳楼现象：揭示多分支if语句的本质，就是下一个楼层暗含之上楼层的条件
+
+//        var a = 10;
+//        if ( a>5 ){
+//            a = a + 3;
+//        }else if ( a=13 ){
+//            a = a + 4;
+//        }else if ( a=17 ){
+//            a = a + 5;
+//        }else {
+//            a = a + 6;
+//        }
+//        console.log(a);
+//        var weight = prompt("请输入体重（kg）");
+//        var height = prompt("请输入身高（m）")
+//        var BMI = weight/(height*height);
+//        if ( BMI<18.5 ){
+//            alert("体重过轻");
+//        }else if ( BMI<=25 ){
+//            alert("体重正常")
+//        }else if ( BMI<=28 ){
+//            alert("体重过重")
+//        }else if ( BMI<=32 ){
+//            alert("体重肥胖")
+//        }else {
+//            alert("非常肥胖")
+//        }
+        var num = parseInt(prompt("请输入加的几号汽油，92或97"));
+        var weight = parseFloat(prompt("请输入加了多少油（升）"))
+        if ( num == 92 ){
+            if ( weight >= 20 ){
+                var money = weight* 5.9;
+            }else {
+                var money = weight* 6;
+            }
+        }else if ( num == 97 ){
+            if ( weight >= 30 ){
+                var money = weight* 6.95;
+            }else {
+                var money = weight* 7;
+            }
+        }else {
+            alert("对不起，没有这号汽油！")
+        }
+        alert("价格是" + money )
+    </script>
+</head>
+<body>
+
+</body>
+</html>

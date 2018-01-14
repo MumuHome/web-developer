@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //Object.getPrototypeOf 根据实例对象获得原型对象
+        function Person() {
+
+        }
+        //原型化person 这些属性均可共享
+        Person.prototype.name = 'z3';
+        Person.prototype.age = '20';
+        Person.prototype.sayName = function () {
+            alert('我是原型对象的方法')
+        };
+        var p1 = new Person();
+        alert(p1.name);
+
+        /*
+        var prototypeObj = Object.getPrototypeOf(p1);
+        alert(prototypeObj == Person.prototype);//如果返回true，则证明方法有效
+        */
+
+        //每次代码读取一个对象的属性的时候，首先会进行一次搜索：搜索实例对象里name的属性，看看有没有
+        //如果没有，再去p2的实例所对应的原型对象里去搜索name属性，如果有就返回，没有则返回undefined
+        /*
+        var p2 = new Person();
+        p2.name = 'w5'; //实例对象的name
+        delete p2.name;
+        alert(p2.name);  //就想获得原型对象的name
+        */
+
+        //判断一个对象属性 是属于原型属性还是属于实例属性
+        /*
+        var p3 = new Person();
+        alert(p3.name);
+        alert(p3.hasOwnProperty('name'));//判断name属性是否属于p3本身（实例）
+        */
+
+        //in 操作符 for in   in 判断属性是否属于这个对象(包括实例和原型)，但无法分辨是原型的还是实例的
+        var p1 = new Person();
+        alert( 'name' in p1);//name属于p1;
+
+        //判断一个属性是否存在原型中 利用hasOwnProperty和in
+        //在原型对象中 是否存在这个属性 第一个参数：当前对象 第二个参数：要判断的属性
+        function hasPrototypeProperty(object,name) {
+            return !object.hasOwnProperty(name) && name in object;
+            //这个属性不是object本身的属性 同时又包括在其（实例或原型）中
+        }
+        var p3 = new Person();
+        alert(hasPrototypeProperty(p3,'name'));
+
+        //ECMA5的新特性 Object.keys()
+        var p1 = new Person();
+        p1.name = 'z3';
+        p1.age = 20;
+        var attribute = Object.keys(p1);//通过这个方法拿到p1实例中的所有的方法
+        alert(attribute);
+        var attribute2 = Object.keys(Person.prototype);//通过这个方法拿到原型中的所有的方法
+        alert(attribute2);
+        //constructor属性 不能被枚举
+        //Object.getOwnPropertyNames() 枚举对象所有的属性，不管该属性是否能被枚举
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

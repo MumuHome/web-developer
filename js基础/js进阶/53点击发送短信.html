@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input><button id="btn">点击发送短信</button>
+<script charset="utf-8" type="text/javascript">
+    var btn = document.getElementById("btn");
+    var time = 10;
+    var setTime = null;
+    btn.onclick = function () {
+        clearInterval(setTime);
+        //按钮不可点击
+        this.disabled = true;   //表单按钮不可用
+        var that = this;    //把this保护起来，可以用在定时器里面
+        setTime = setInterval(function () { //定时器的名字
+            time = time - 1;
+            if ( time>=0 )
+            {
+                that.innerHTML = "请在"+ time +"秒之后重试";    //button是一个双标签，更改值用innerHtml而不是value
+            }else
+            {
+                that.innerHTML = "重新发送短信";
+                that.disabled = false;
+                clearInterval(setTime);
+                time = 10;
+            }
+
+        },1000)
+    }
+</script>
+</body>
+</html>

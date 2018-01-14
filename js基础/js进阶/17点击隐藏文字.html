@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            color: #999999;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        //获得焦点与失去焦点事件
+        //onfocus onblur
+        function $(id) {
+            return document.getElementById(id);
+        }
+        window.onload = function () {
+            $("txt").onfocus = function () {  //得到焦点
+//                this.value = '请输入'?'':'文字';
+                //当用户已经输入了就不清空
+                if ( this.value == '请输入...' ){
+                    this.value = '';
+                    this.style.color = "#333"
+                }
+            }
+            $("txt").onblur = function () {  //失去焦点
+                //什么时候还原
+                if ( this.value == '' ){
+                    this.value = '请输入...';
+                    this.style.color = "#999"
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input id="txt" type="text" value="请输入..."><button id="btn">查询</button>
+</body>
+</html>

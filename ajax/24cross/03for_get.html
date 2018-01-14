@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>一直发送请求</h1>
+<input type="button" value="一直发送请求" id="get">
+</body>
+</html>
+<script src="js/jquery-3.0.0.min.js" type="text/javascript"></script>
+<script>
+    $(function () {
+        $("#get").click(function () {
+//            如果一直发送请求 会对性能有很大影响
+            $.ajax({
+                url:"http://localhost/24cross/03for_get.php"
+            })
+        })
+    })
+
+</script>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入的核心js公共文件-->
+    <script type="text/javascript" charset="utf-8" src="../new-text/CommonUtil.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        // 细粒度 和 粗粒度
+        // 万事万物都是object 卖车的商店->卖车->生产车->工厂
+        // 搭建一个工厂的环境
+        // 卖车的商店可能有 奥迪 奔驰 宝马 （把没有关系的东西筛选出来，放到合适的地方）
+
+        // Super Shop 卖车
+        // abstract class java抽象类（）
+        /* this Carshop is a abstract */
+        function CarShop() {};
+        CarShop.prototype = {
+            constructor:CarShop,
+            sellCar:function (type) {
+                // 销售人员
+                //var car = CarFactory.createCar(type);
+                // 保险、相关售后服务
+                //return car;
+                this.abstractSellCar(type);
+            },
+            abstractSellCar:function () {
+                throw new Error('this method is abstract...');
+            }
+
+        };
+        // 奔驰4s
+        function BenzCarshop() {};
+        XJ.extend(BenzCarshop,CarShop);
+        BenzCarshop.prototype = {
+            constructor:BenzCarshop,
+            sellCar:function (type) {
+                var car; // 声明一个变量
+                var types = ['Benz']; // 所有奔驰类型的汽车
+                for ( t in types ){
+                    // 如果我的商店里有你想要的汽车型号
+                    if ( types[t] === type ){
+                        car = CarFactory.createCar(type);
+                    }else {
+                        alert('没有你要的型号')
+                    }
+                }
+                return car;
+                //var car = CarFactory.createCar(type);
+                //return car;
+            }
+        }
+        // 宝马4s
+        function BmwCarshop() {};
+        XJ.extend(BmwCarshop,CarShop);
+        BmwCarshop.prototype = {
+            constructor:BmwCarshop,
+            sellCar:function (type) {
+                var car; // 声明一个变量
+                var types = ['Bmw']; // 所有宝马类型的汽车
+                for ( t in types ){
+                    // 如果我的商店里有你想要的汽车型号
+                    if ( types[t] === type ){
+                        car = CarFactory.createCar(type);
+                    }else {
+                        alert('没有你要的型号')
+                    }
+                }
+                return car;
+                //var car = CarFactory.createCar(type);
+                //return car;
+            }
+        };
+
+        // 生产车的工厂 目的就是为了生产车
+        // 单体模式 动态工厂
+        var CarFactory = {
+            createCar:function (type) {
+                // var car = new Benz()
+                // 利用eval动态创建传入类型的实例对象
+                var car = eval('new '+type+'()');
+                XJ.Interface.ensureImplements(car,CarInterface);// 检验接口实现
+                return car;
+            }
+        }
+
+        // 接口对象
+        var CarInterface = new XJ.Interface('CarInterface',['start','run']);
+        // super class implements CarInterface
+        function BaseCar() {};
+        BaseCar.prototype = {
+            constructor : BaseCar,
+            start:function () {
+                alert(this.constructor.name + 'start')
+            },
+            run:function () {
+                alert(this.constructor.name + 'run')
+            }
+        }
+        //class benz bmw audi (都是车)
+        // 注意关键问题 子类先继承父类 子杰再扩展自己特有的方法
+        function Benz() {};
+        XJ.extend(Benz,BaseCar);
+        Benz.prototype.driveB = function () {
+            alert('Benz..drive')
+        };  // 加一个奔驰特有的方法
+//        Benz.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Benz.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        function Bmw() {};
+        XJ.extend(Bmw,BaseCar);
+//        Bmw.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Bmw.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        function Audi() {};
+        XJ.extend(Audi,BaseCar);
+//        Audi.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Audi.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        /*
+        var shop = new CarShop();
+        var Car = shop.sellCar('Benz');
+        Car.start();
+        Car.run();
+        Car.driveB();
+        */
+
+        var shop1 = new BenzCarshop();
+        var car1 = shop1.sellCar('Benz');
+        car1.run();
+
+        var shop2 = new BmwCarshop();
+        var car2 = shop2.sellCar('Bmw');
+        car2.run();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        function fn(a,b) {   //这里的a和b是形参
+            console.log(fn.length); //得到的是函数的形参个数
+            console.log(arguments.length);//得到函数实参的个数
+        }
+        fn(1,2);  //这里的a、b是实参
+
+        function fnclick(obj) {
+            var targit = document.getElementById(obj);
+            targit.style.display = 'block';
+        }
+
+    </script>
+    <style>
+        div{
+            width: 200px;
+            height:200px;
+            background-color: pink;
+            margin: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!--行内式js-->
+<button onclick="fnclick('demo1')" >第一个按钮</button>
+<button onclick="fnclick('demo2')" >第二个按钮</button>
+<button onclick="fnclick('demo3')" >第三个按钮</button>
+<button onclick="fnclick('demo4')" >第四个按钮</button>
+
+<div id="demo1">1</div>
+<div id="demo2">2</div>
+<div id="demo3">3</div>
+<div id="demo4">4</div>
+</body>
+</html>

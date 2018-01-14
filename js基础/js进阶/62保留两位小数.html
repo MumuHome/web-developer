@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script charset="utf-8" type="text/javascript">
+    var PI = 3.1415926; //常亮大写
+    var str = PI + "";  //因为数字没法进行字符操作，先转换
+    var index = str.indexOf(".");   //要返回当前字符点的位置
+    console.log(str.substr(0,index+3));
+
+    //第二种办法
+    console.log(parseInt(PI*100)/100);
+    //第三种办法
+    console.log(PI.toFixed(2));
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: lightgreen;
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            margin:100px auto;
+        }
+        img{
+            transition: all 1s;
+        }
+        /*打乱前四张*/
+        img:nth-child(1){
+            transform: translate(-100px, -100px) rotate(30deg);
+        }
+        img:nth-child(2){
+            transform: translate(360px, 200px) rotate(60deg);
+        }
+        img:nth-child(3){
+            transform: translate(-120px, -100px) rotate(90deg);
+        }
+        img:nth-child(4){
+            transform: translate(-30px, -50px) rotate(150deg);
+        }
+        .box:hover img{
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="img/shield_1_01.png">
+    <img src="img/shield_1_02.png">
+    <img src="img/shield_1_03.png">
+    <img src="img/shield_1_04.png">
+    <img src="img/shield_1_05.png">
+    <img src="img/shield_1_06.png">
+    <img src="img/shield_1_07.png">
+    <img src="img/shield_1_08.png">
+    <img src="img/shield_1_09.png">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 2px;
+            height: 200px;
+            margin:100px auto;
+            background: grey;
+            transform-origin: center bottom;
+            animation: root 60s steps(60) infinite;
+        }
+        @keyframes root {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>

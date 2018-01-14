@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+
+        window.onload = function () {
+            var btn = document.getElementById("btn");
+            var login = document.getElementById("login");
+            var cover = document.getElementById("cover");
+            var cl = document.getElementById("cl");
+            btn.onclick = function () {
+                login.style.display = "block";
+                cover.style.display = "block";
+            }
+            cl.onclick = function () {
+                login.style.display = "none";
+                cover.style.display = "none";
+            }
+        }
+    </script>
+    <style>
+        body{
+            height: 100%;
+            width: 100%;
+        }
+        #cover{
+            background-color: rgba( 0,0,0,.3 );
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 99;
+            display: none;
+        }
+        #login{
+            position: fixed;
+            width: 400px;
+            height: 200px;
+            left:50%;
+            top:50%;
+            margin-left: -200px;
+            margin-top: -100px;
+            background: white;
+            z-index: 100;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a id="btn" href="javascript:void">您好，请登录</a>
+<div id="cover"></div>
+<div id="login">
+    <span id="cl">x</span>
+</div>
+
+</body>
+</html>

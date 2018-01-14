@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">my name is xujuan!</div>
+<div id="div2">whats your name?</div>
+<button id="btn1">concat</button><span></span>
+<button id="btn2">slice(3)</button><span></span>
+<button id="btn3">slice(3,6)</button><span></span>
+<button id="btn4">slice(-1)</button><span></span>
+<button id="btn5">substr(3)</button><span></span>
+<button id="btn6">substr(3,6)</button><span></span>
+<button id="btn7">substr(-1)（兼容）</button><span></span>
+<script charset="utf-8" type="text/javascript">
+    var txt1 = document.getElementById("div1").innerHTML;
+    var txt2 = document.getElementById("div2").innerHTML;
+    function getTxt(id,txt) {
+        document.getElementById(id).onclick = function () {
+            this.nextSibling.innerHTML = txt;
+        }
+    }
+    getTxt("btn1",txt1.concat(txt2));
+    getTxt("btn2",txt1.slice(3));   //从第三个开始截取
+    getTxt("btn3",txt1.slice(3,6));   //从第三个开始截取，取到第六个，不包含第六个
+    getTxt("btn4",txt1.slice(-1));   //起始位置可以为负数，如果为负数，则是从右往左开始取
+    getTxt("btn5",txt1.substr(3));   //从右边第三个开始取，不写取的个数默认一直取到最后
+    getTxt("btn6",txt1.substr(3,6));   //从右边第三个开始取，往后取六个
+    getTxt("btn7",txt1.substr(txt1.length-1,1));   //取最后一个
+</script>
+</body>
+</html>

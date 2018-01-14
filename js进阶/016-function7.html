@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //垃圾收集 方法1：标记方法  2引用计数法
+        function test() {
+            var a = 10;   //被使用
+            var b = 20;   //被使用
+        }
+        test();  //执行完毕之后 a和b又被标记了一次，没有被使用
+
+        //块级作用域的概念
+        //高级程序语言 java里 for if有块级作用域的概念
+        //js没有块级作用域的概念，认为至于当函数执行完毕之后，内部函数才会回收
+        function test1() {
+            for ( var i=1 ; i<=5 ; i++ ){
+                alert(i);
+            }
+            alert(i);  //6
+        }
+        test1();
+
+
+        function test2() {
+            (function () {
+                for ( var i=1 ; i<=5 ; i++ ){
+                    alert(i);
+                }
+            })();  //for在单独的作用域里面了
+            alert(i);  //undefined
+        }
+        test2();
+
+        (一个函数)();  //让函数直接执行
+    </script>
+</head>
+<body>
+
+</body>
+</html>

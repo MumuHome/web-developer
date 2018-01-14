@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <!--把clickHandle方法绑定在click事件上 v-on简写为@-->
+    <span v-on:click="clickHandle">{{ message }}</span>
+</div>
+<script>
+//    数据
+    let obj = {
+        message:'hello vue'
+    }
+//    声明式渲染
+    var vm = new Vue({
+        el:'#demo',
+        data:obj,
+        methods:{
+            clickHandle(){
+                alert('click')
+            }
+        }
+    });
+//    原生：
+    var arr = [1,2,3,4,5]
+//    求数组中每一项的2倍 生成新的数组
+//    var newArr = [];
+//    for ( var i=0;i<arr.length;i++ )
+//    {
+//        newArr.push(arr[i]*2);
+//    }
+
+//    声明式
+    var newArr = arr.map(function (item) {
+        return item*2
+    });
+    console.log(newArr);
+
+</script>
+</body>
+</html>

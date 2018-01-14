@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var json = { name:"刘德华",age : 55 };
+    //判断json里面有没有某个属性
+    if ( "name" in json)    //要求 左边一定是字符，右边是对象或数组
+    {
+        alert("json里面有name")
+    }else {
+        alert("json里面没有name")
+    }
+</script>
+</body>
+</html>

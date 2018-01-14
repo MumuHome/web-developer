@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+
+        var name = 'xiao A';
+        var obj = {
+            name : 'xiao B',
+            getName:function () {
+                return function () {
+                    return this.name;
+                }
+            }
+        };
+        alert(obj.getName()());
+        alert(obj.getName());//执行结果为function () {return this.name;} 此时this的作用域为全局
+
+
+        var name1 = 'xiao C';
+        var obj1 = {
+            name1 : 'xiao D',
+            getName:function () {
+                //this总是指向调用者
+                var o = this;//此时this指向的obj
+                return function () {
+                    return o.name1;
+                }
+            }
+        };
+        alert(obj1.getName()());
+        // 闭包：一个函数可以访问另外一个函数作用域中的变量
+        // 具有封闭性 ：private 起到保护的作用 保护变量
+
+        function f(x) {
+            var temp = x;      //引用之后temp应该自动消失 但是下面又再次调用temp 因此没有被标记
+            return function (x) {
+                temp += x;    //temp在此处又被使用
+                alert(temp);
+            }
+        }
+        var a = f(50);
+        a(5);
+        a(10);
+        a(15);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

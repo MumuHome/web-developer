@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script charset="utf-8" type="text/javascript">
+    var txt = "what are you 弄啥嘞";
+    console.log(txt.length);    //length处理不了汉字
+    function getLength(str) {
+        var len = 0; //存储总长度
+        var c = 0;  //存储每一个字符编码
+        for ( var i=0; i<str.length ; i++ )
+        {
+            c = str.charCodeAt(i);
+            if ( c<=127 )
+            {
+                len = len+1;
+            }else
+            {
+                len = len+2;  //如果unicode编码大于127，那么说明是中文，占两个字符长度
+            }
+        }
+        return len;
+    }
+    alert(getLength(txt));
+</script>
+</body>
+</html>

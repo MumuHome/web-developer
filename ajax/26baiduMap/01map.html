@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            width: 200px;
+            line-height:1.8;
+            text-align: center;
+            margin:100px auto;
+            border:1px solid #ccc;
+        }
+        td{
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="查看地图" id="map">
+<script src="js/jquery-3.0.0.min.js" type="text/javascript"></script>
+<!-- 导入模板引擎 -->
+<script src="js/template-native.js" type="text/javascript"></script>
+<!-- 定义模板 模板是从模板对象函数传入的对象开始算的map.address_detail -->
+<script type="text/template" id="template">
+    <table>
+        <tr>
+            <td><%=address_detail.city%></td>
+            <td><%=address_detail.city_code%></td>
+            <td><%=address_detail.province%></td>
+        </tr>
+    </table>
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#map").click(function () {
+            $.ajax({
+                url:"http://api.map.baidu.com/location/ip?ip=&ak=TrjADyeBrx3Tz41cCwjVqrMxjMRtfo5W&coor=bd09ll",
+                dataType:"jsonp",
+//                如果不写jsonpCallback后面的参数 那么默认使用的是success方法
+                success:function (data) {
+//                    console.log(data);
+//                    为了模板引擎使用方便 直接取出要用的数据
+                    var map = data.content;
+                    console.log(map);
+//                    调用模板 模板引擎不能传数组 只能传对象
+                    var result = template('template',map);
+                    document.body.innerHTML = result;
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stars>
+	
+<person>
+	<name>欧阳子杰</name>
+	<age>18</age>
+	<skill>打篮球</skill>
+	<path>../img/1.jpg</path>
+</person>
+<person>
+	<name>巧儿</name>
+	<age>18</age>
+	<skill>做PPT</skill>
+	<path>../img/2.jpg</path>
+</person>
+<person>
+	<name>小爱</name>
+	<age>18</age>
+	<skill>考试</skill>
+	<path>../img/3.jpg</path>
+</person>
+<person>
+	<name>娟娟</name>
+	<age>18</age>
+	<skill>写代码</skill>
+	<path>../img/4.jpg</path>
+</person>
+
+</stars>

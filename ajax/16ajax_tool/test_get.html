@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="btn" value="测试get">
+<script type="text/javascript" src="ajax_tool.js"></script>
+<script>
+    document.querySelector("#btn").onclick = function () {
+//        参数1：url 参数2：数据 参数3：请求的页面 参数4：数据获取成功调用的方法
+        var backDate = ajax_too('test_get.php','name=huluwa&skill=sayyeye','get',function (data) {
+            console.log(data);
+        });
+        console.log(backDate);
+    }
+</script>
+</body>
+</html>

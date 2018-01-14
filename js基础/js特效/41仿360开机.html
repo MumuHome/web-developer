@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        img{
+            display: block;
+            vertical-align: bottom;
+        }
+        .box{
+            width: 322px;
+            position: fixed;
+            bottom:0;
+            right:0;
+        }
+        span{
+            position: absolute;
+            top:0;
+            right:0;
+            width:30px;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="big">
+    <span id="close"></span>
+    <div class="hd" id="t">
+        <img src="images/t.jpg" alt=""/>
+    </div>
+    <div class="bd" id="b">
+        <img src="images/b.jpg" alt=""/>
+    </div>
+</div>
+<script>
+    var b = document.getElementById("b");
+    var closeAd = document.getElementById("close");
+    var big = document.getElementById("big")
+    closeAd.onclick = function () {
+        // 回调函数，链式调用
+        animate(b,{height:0},function () {
+            animate(big,{right:-big.offsetWidth})
+        } )
+    }
+
+    //封装单个属性运动框架
+    function animate(obj,json,fn) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            var flag = true; //用来判断是否应该停止定时器，写在遍历外面
+            //计算步长 （目标位置 - 当前位置）/10
+            //运动公式 ： 初始位置 + 步长
+            //开始遍历接收
+            for ( var k in json )   //k 为 attr
+            {
+                //初始位置
+                var current = parseInt(getStyle(obj,k));
+                console.log(current);
+                //目标位置就是属性值
+                var step = (json[k] - current)/10;  //步长
+                step = step>0?Math.ceil(step):Math.floor(step);
+                obj.style[k] = current + step + "px";
+                //只要其中有一个不满足条件 flag则为false
+                if ( current != json[k] )
+                {
+                    flag = false;
+                }
+                console.log(flag);
+            }
+            if ( flag )
+            {
+                clearInterval(obj.timer);
+                //执行回调函数
+                if (fn)
+                {
+                    fn();//执行函数
+                }
+            }
+
+        },30)
+    }
+
+
+
+    function getStyle(obj,attr) {   //谁的  哪个属性
+        if ( obj.currentStyle )
+        {
+            return obj.currentStyle[attr];  //ie
+        }else
+        {
+            return window.getComputedStyle(obj,null)[attr]; //w3c
+        }
+    }
+</script>
+</body>
+</html>

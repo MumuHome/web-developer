@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<button id="btn200">200</button>
+<button id="btn400">400</button>
+<div id="box"></div>
+<script>
+    var btn200 = document.getElementById("btn200");
+    var btn400 = document.getElementById("btn400");
+    var box = document.getElementById("box");
+    btn200.onclick = function () {
+        animate(box,{left : 200 , width : 200},function () {alert("我来了")});
+    }
+    btn400.onclick = function () {
+        animate(box,{height : 400 ,top : 400});
+    }
+    //封装单个属性运动框架
+    function animate(obj,json,fn) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            var flag = true; //用来判断是否应该停止定时器，写在遍历外面
+            //计算步长 （目标位置 - 当前位置）/10
+            //运动公式 ： 初始位置 + 步长
+            //开始遍历接收
+            for ( var k in json )   //k 为 attr
+            {
+                //初始位置
+                var current = parseInt(getStyle(obj,k));
+                console.log(current);
+                //目标位置就是属性值
+                var step = (json[k] - current)/10;  //步长
+                step = step>0?Math.ceil(step):Math.floor(step);
+                obj.style[k] = current + step + "px";
+                //只要其中有一个不满足条件 flag则为false
+                if ( current != json[k] )
+                {
+                    flag = false;
+                }
+                console.log(flag);
+            }
+            if ( flag )
+            {
+                clearInterval(obj.timer);
+                //执行回调函数
+                if (fn)
+                {
+                    fn();//执行函数
+                }
+            }
+
+        },30)
+    }
+
+
+
+    function getStyle(obj,attr) {   //谁的  哪个属性
+        if ( obj.currentStyle )
+        {
+            return obj.currentStyle[attr];  //ie
+        }else
+        {
+            return window.getComputedStyle(obj,null)[attr]; //w3c
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+//        var year = prompt('请输入你的出生年月日'); //用户不管输出什么，都是字符串
+//        var age = 2017 - year;
+//        alert('你今年' + age + '岁了！' );
+//        //字符串怎么变为数字
+//        var a = '123';
+//        var b = parseInt(a); //parseInt把字符串转换成数字 后面的中文消失，自动取整
+//        console.log(b);
+//        console.log(typeof b);
+
+        //模拟计算器
+//        var num1 = prompt('请输入第一个数');
+//        var num2 = prompt('请输入第二个数');
+//        var sum = parseInt(num1) + parseInt(num2) ;
+//        alert(sum);
+
+        //输入一个三位数，用程序计算出三位数字的和
+        //除了+之外，其他的运算符运行之后都可以自动转换数字，即使如此也要手动转换
+//        var a = prompt('请输入一个三位数');
+//        num = parseInt(a);
+//        alert(
+//            parseInt(num/100) +
+//            parseInt(
+//                (num - parseInt(num/100)*100)/10
+//            ) +
+//            num - parseInt(num/100)*100 - parseInt((num - parseInt(num/100)*100)/10)*10
+//        );
+//
+//        var aa = parseFloat('309');
+//        alert(aa);
+//        Math.pow(a,b)  表示a的b次方
+//        var a1 = Math.pow((23 + Math.pow(5,7))/45,2);
+//        alert(a1);
+        // 如果今天是星期六，请输入n天后是星期几
+        var day = prompt('请输入几天后');
+        var week = (6 + (day%7))%7;
+        alert(day + '天后为星期' + week);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="切换到第一个组件" @click="change(1)">
+    <input type="button" value="切换到第二个组件" @click="change(2)">
+    <input type="button" value="切换到三个组件" @click="change(3)">
+    <!--如果需要保留把切出去的组件保留在内存里，那么可以使用keep-alive标签-->
+    <keep-alive>
+        <!--如果多个组件动态切换，那么可以使用提供的默认组件标签component 用is来动态切换(is可以扩展html)-->
+        <component :is="current"></component>
+    </keep-alive>
+
+</div>
+<script>
+    var custom1 = Vue.component('custom1',{
+        template:`
+        <div @click="changeBg">第一个组件</div>
+        `,
+        methods:{
+//            ev是事件对象 ev.target表示点击的dom
+            changeBg(ev){
+                ev.target.style.background = 'yellow';
+            }
+        }
+    });
+    var custom2 = Vue.component('custom2',{
+        template:`
+        <div>第二个组件</div>
+        `
+    });
+    var custom3 = Vue.component('custom3',{
+        template:`
+        <div>第三个组件</div>
+        `
+    });
+
+    new Vue({
+        el:'#app',
+        data:{
+            current:custom1
+        },
+        methods:{
+            change(index){
+                if (index === 1)
+                {
+                    this.current=custom1
+                }else if(index === 2){
+                    this.current=custom2
+                }else {
+                    this.current=custom3
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

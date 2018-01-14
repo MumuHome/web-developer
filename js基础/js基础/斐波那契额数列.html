@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //斐波那契数列 1、1、2、3、5、8、13、21、34
+        //输出前100的斐波那契数列
+        //传入n，将返回第n位的数字
+        //传入7，返回13
+        //传入3，返回2
+        console.log(fib(33));
+        function fib(n) {
+            if ( n==1 ){
+                return 1;
+            }else if ( n==2 ){
+                return 1;
+            }else {
+                return fib(n-1) + fib(n-2);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

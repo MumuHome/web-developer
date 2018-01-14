@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: relative;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">开始</button>
+<div></div>
+<script>
+    //动画的基本原理 ： 盒子的offsetLeft + 步长
+    var btn = document.getElementById("btn");
+    var box = document.getElementsByTagName("div")[0];
+    var timer = null;
+    btn.onclick = function () {
+        timer = setInterval(function () {
+            if ( box.offsetLeft > 400 )
+            {
+                clearInterval(timer)
+            }
+            box.style.left = box.offsetLeft + 10 + "px";
+        },20)
+
+    }
+
+</script>
+</body>
+</html>

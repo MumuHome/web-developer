@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入的核心js公共文件-->
+    <script type="text/javascript" charset="utf-8" src="../new-text/CommonUtil.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        // 搭建一个工厂的环境
+        // 卖车的商店
+        function CarShop() {};
+        CarShop.prototype = {
+            constructor:CarShop,
+            sellCar:function (type) {
+                var Car; // 声明一个变量
+                switch (type){
+                    case 'Benz':Car = new Benz();break;
+                    case 'Bmw':Car = new Bmw();break;
+                    case 'Audi':Car = new Audi();break;
+                    default:'not buy it';
+                };
+                XJ.Interface.ensureImplements(Car,CarInterface);// 检验接口实现
+                return Car;
+            }
+        };
+
+        // 接口对象
+        var CarInterface = new XJ.Interface('CarInterface',['start','run']);
+        // super class implements CarInterface
+        function BaseCar() {};
+        BaseCar.prototype = {
+            constructor : BaseCar,
+            start:function () {
+                alert(this.constructor.name + 'start')
+            },
+            run:function () {
+                alert(this.constructor.name + 'run')
+            }
+        }
+        //class benz bmw audi (都是车)
+        // 注意关键问题 子类先继承父类 子杰再扩展自己特有的方法
+        function Benz() {};
+        XJ.extend(Benz,BaseCar);
+        Benz.prototype.driveB = function () {
+            alert('Benz..drive')
+        };  // 加一个奔驰特有的方法
+//        Benz.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Benz.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        function Bmw() {};
+        XJ.extend(Bmw,BaseCar);
+//        Bmw.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Bmw.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        function Audi() {};
+        XJ.extend(Audi,BaseCar);
+//        Audi.prototype.start = function () {
+//            alert('Benz..start')
+//        };
+//        Audi.prototype.run = function () {
+//            alert('Benz..run')
+//        };
+
+        var shop = new CarShop();
+        var Car = shop.sellCar('Benz');
+        Car.start();
+        Car.run();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

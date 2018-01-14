@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: #f0f0f0;
+        }
+        .modal{
+            width: 500px;
+            border:1px solid #ccc;
+            padding: 20px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--使用烤串形式 父组件传给子组件，用modal-title，子组件给父组件，用@onok="sure" @oncancel="cancel"-->
+    <xj-alert modal-title="提醒"  @onok="sure" @oncancel="cancel"></xj-alert>
+    <xj-alert modal-title="提醒">
+        <!--实例化内容-->
+        <ul slot="modal-content">
+            <li v-for="item in list">{{ item }}</li>
+        </ul>
+        <!--实例化页脚-->
+        <div slot="modal-footer">
+            <span>确定</span>
+            <span>重置</span>
+            <span>返回</span>
+        </div>
+    </xj-alert>
+</div>
+<script>
+//    设置的props：
+//      modalTitle 提醒信息默认为：'这是一个动态框'
+//    定制模板
+//      slot为modal-content 定制提醒模板
+//      slot为modal-footer 定制底部模板
+//    定制子组件状态变化
+//      事件on-ok 点击确定触发
+//      事件on-cancel 点击取消触发
+    Vue.component('xj-alert',{
+        props:{
+//            定义modalTitle（驼峰）的值为字符串，默认值为'这是一个动态框'
+            modalTitle:{
+                type:String,
+                default:'这是一个动态框'
+            }
+        },
+        template:`
+        <div class="modal">
+        <div class="modal-header">
+            <h4>{{ modalTitle }}</h4>
+        </div>
+        <div class="modal-content">
+            <div><slot name="modal-content">在这里添加内容</slot></div>
+        </div>
+        <div class="modal-footer">
+            <slot name="modal-footer">
+                <input class="btn blue" type="button" value="确定" @click="okHand">
+                <input class="btn" type="button" value="取消" @click="okCancel">
+            </slot>
+        </div>
+    </div>
+        `,
+        methods:{
+            okHand(){
+//                通知父组件
+                this.$emit('onok');
+            },
+            okCancel(){
+                this.$emit('oncancel');
+            }
+        }
+    });
+
+    //伪造数据
+    var list = [...'风月无边'];
+
+    new Vue({
+        el:'#app',
+        data:{
+            list:list
+        },
+        methods:{
+            sure(){
+                alert('点击了确定')
+            },
+            cancel(){
+                alert('点击了取消')
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function outfun() {
+        var num = 10;
+        function infun() {
+            console.log(num);   //内部的函数可以使用外部函数的变量
+        }
+        return infun;   //不带括号，返回函数体
+    }
+    var obj = outfun(); //即：obj=function infun(){ console.log(num) };
+    obj();
+</script>
+</body>
+</html>

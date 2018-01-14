@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" charset="utf-8">
+        //形参列表
+        // 在js中，函数的参数分为形参和实参
+        function test(a,b,c,d) {
+            alert(test.length);
+            //函数的实际参数，内部就是用一个数组去接收函数的实际参数
+            //arguments对象，可以访问函数的实际参数,只能在函数内部使用
+            alert(test.arguments.length);
+            alert(test.arguments[0]);//得到函数第一个实际的值
+            alert(test.arguments[1]);//得到函数第二个实际的值
+
+            if (trguments.callee.length == test.arguments.length){
+                return a+b;
+            }else {
+                alert("参数不正确");
+            }
+
+            return a+b;
+
+            //arguments对象，用的最多的是递归操作
+            //arguments.callee 指向函数本身，用在递归上更加精确
+            arguments.callee.length
+
+        }
+        alert(test(10,20));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>拖放操作</title>
+  <meta name="author" content="汪磊">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <style>
+    #target {
+      padding: 20px;
+      height: 300px;
+      border: 5px dashed #c0c0c0;
+      color: #e0e0e0;
+      font-size: 40px;
+      line-height: 260px;
+      text-align: center;
+      -webkit-user-select: none;
+      cursor: pointer;
+    }
+    
+    #target.actived {
+      border-color: #888;
+      color: #eaeaea;
+      box-shadow: 0 0 80px #e0e0e0 inset;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1>Drag&Drop</h1></div>
+    <div class="jumbotron">
+      <p>你好啊，你今年几岁啊，哈哈，我的今天在哪里</p>
+        <img src="images/toy.png">
+    </div>
+
+    <div id="target">
+      Drag something into here
+    </div>
+  </div>
+  <script>
+      (function () {
+//          找到目标位置的框
+          var target = document.querySelector('#target');
+          var filesList = document.querySelector('#result');
+//          注册dragenter事件 拖拽进入时触发
+          target.addEventListener('dragenter',function () {
+              this.classList.add('actived');
+          })
+//          注册dragleave事件 拖拽离开时触发
+          target.addEventListener('dragleave',function () {
+              this.classList.remove('actived');
+          })
+
+
+//          如果想要捕获drop事件，一定要在此之前阻止默认事件
+          target.addEventListener('dragover',function (e) {
+              e.preventDefault();
+//              阻止事件冒泡
+              e.stopPropagation()
+          })
+//          当元素放到该对象上面，触发drop事件
+          target.addEventListener('drop',function (e) {
+              this.classList.remove('actived');
+              if ( e.dataTransfer.files.length )
+              {
+                  var files = e.dataTransfer.files;
+                  for ( var i = 0 ; i <files.length ; i++ )
+                  {
+//                group.removeChild(li);
+                      var li = document.createElement('li');
+                      li.setAttribute('class','list-group-item');
+//                创建li的子节点，标题为文件名，内容为文件修改日期
+                      li.innerHTML = '<h5 class="list-group-item-heading">'+files[i].name+'</h5><p class="list-group-item-text">'+files[i].lastModifiedDate.toLocaleDateString()+' '+files[i].lastModifiedDate.toLocaleTimeString()+' '+parseInt(files[i].size/1024)+'KB</p>';
+                      filesList.appendChild(li);
+                  }
+              }else
+              {
+//              短路运算
+//              var data = e.dataTransfer.getDate('text/plain') || e.dataTransfer.getDate('text/uri-list');
+                  var data = e.dataTransfer.getData('text/plain');
+                  if ( data )
+                  {
+//                  说明拖入的是文本
+                      target.innerHTML = data;
+                  }else
+                  {
+                      var img = document.createElement('img');
+                      img.src = e.dataTransfer.getData('text/uri-list');
+                      target.appendChild(img);
+                  }
+              }
+
+              e.preventDefault();
+              e.stopPropagation();
+          })
+      })()
+  </script>
+</body>
+
+</html>

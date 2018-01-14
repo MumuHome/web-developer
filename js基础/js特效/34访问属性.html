@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: absolute;
+            left: 10px;
+            top:20px;
+        }
+    </style>
+</head>
+<body>
+<div id="box" style="left: 30px;width: 100px"></div>
+<script>
+    var box = document.getElementById("box");
+//    console.log(box.style.left);
+//    console.log(box.style["left"]);
+    function fn(attr) {
+        console.log(box.style[attr]);
+    }
+    fn("left");
+    fn("width");
+</script>
+</body>
+</html>

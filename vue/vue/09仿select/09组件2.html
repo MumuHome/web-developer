@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <h2>自定义下拉框1</h2>
+    <!--必须要在符合w3c规定的地方放入自定义标签 否则就要使用is进行扩展-->
+    <table>
+        <tr>
+            <td><custom-select btn-value="查询"></custom-select></td>
+        </tr>
+        <!--变通方法 不推荐使用-->
+        <tr is="custom-select"></tr>
+    </table>
+    <!--自定义标签 自定义属性 注意：命名只能是烤串-->
+
+    <h2>自定义下拉框2</h2>
+    <!--自定义标签 自定义属性-->
+    <custom-select btn-value="搜索"></custom-select>
+</div>
+<script>
+//    要使用组件 先注册组件 全局注册 参数一：组件名 参数二：对组件的描述
+    Vue.component('custom-select',{
+//        每个组件可以定义数据 此时data不能定义为对象，只能定义为函数
+        data:function () {
+//            每个data函数返回自己的selectShow 不会影响别的组件
+            return {
+                selectShow:false
+            }
+        },
+//        接收自定义属性 注意：命名要修改成驼峰
+        props:['btnValue'],
+        template:`
+            	<section class="warp">
+		<div class="searchIpt clearFix">
+			<div class="clearFix">
+				<input type="text" class="keyWord" value="" @click="selectShow=!selectShow" @blur="selectShow=false"/>
+				<input type="button" :value="btnValue">
+				<span></span>
+			</div>
+			<ul class="list" v-show="selectShow">
+				<li>html+css</li>
+				<li>html5+css3</li>
+				<li>javascript</li>
+				<li>angular</li>
+				<li>react</li>
+				<li>vue</li>
+				<li>jquery</li>
+				<li>nodejs</li>
+			</ul>
+		</div>
+	</section>
+        `
+    });
+    new Vue({
+        el:'#app'
+    });
+</script>
+</body>
+</html>

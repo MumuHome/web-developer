@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" charset="utf-8">
+        var arr = [1,2,3,4,5,6,7,8];
+        //var index = arr.indexOf(4);//一个参数的时候表示传值，表示索引位置（从0开始），两个参数的时候，一个个表示起始位置，第二个参数还是值
+        //alert(index);
+
+        //他们查找数组比较的时候，是'==='比较(不进行自动转换)
+
+        //every:对数组的每一个元素进行一个函数的运行，如果每一个都返回true，则返回true，否则返回false
+        //filter:对于数组的每一个元素进行一个函数的运行，给定的函数去执行，把过滤后的结果返回
+        //forEach:循环数组的每一项 并执行一个方法
+        //map:对于数组的每一个元素进行一个函数的执行，可以经过函数执行完毕后，把新的结果返回
+        //some对数组的每一个元素进行一个函数的运行，如果只要有一个返回true，则返回true，否则返回false
+        //reduce:前一个值，当前值，索引位置，数组本身
+        //reduceRight:从右开始遍历，其他的跟上面一样
+        var result = arr.reduce(function (prev, cur, index, array) {
+            return prev + cur;//前一个值加上当前值
+        });
+        alert(result);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

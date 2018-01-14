@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" charset="utf-8">
+        //call apply简单的用法：绑定一些函数 用于传递参数
+        function sum(x,y) {
+            return x+y;
+        }
+        function call1(num1,num2) {
+            return(sum.call(this,num1,num2));//绑定了sum的方法
+        }
+        function apply1(num1,num2) {
+            return(sum.apply(this,[num1,num2]));//绑定sum方法，变量为数组
+        }
+        alert(call1(10,20));
+        alert(apply1(20,30));
+
+        //扩充作用域
+        window.color = 'red';
+        var obj = {color:'blue'};
+        function showcolor() {
+            alert(this.color);
+        }
+
+        //因此call和apply的强大的地方在于扩充作用域，与对象的方法没有任何的耦合关系
+        showcolor.call(window);//此时this的作用域为全局
+        showcolor.call(obj);//此时this的作用域为obj对象
+
+
+
+
+        //call方法的简单模拟与实现
+
+        //方法
+        function test1(a,b) {
+            return a+b;
+        }
+
+        //自定义对象
+        function Obj(x,y) {   //约定俗成的方法：如果属性名大写，说明是自己定义的对象
+            return x*y;
+        }
+
+        var o = new Obj ();
+        o.method = test1;
+        alert(o.method(10,20));
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

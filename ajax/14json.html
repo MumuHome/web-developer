@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    json字符串
+//    如果是对象，使用{}包裹
+//    如果是数组，使用[]包裹
+//    属性名 必须使用双引号包裹
+//    属性值 必须使用双引号包裹（如果是数字，可以不包裹）
+    var str = '{"name":"jack","wife":"rose","friend":"tree"}';
+//    把json变成js对象，必须调用的方法
+    var jsObj = JSON.parse(str);
+    console.log(jsObj.name);
+</script>
+</body>
+</html>

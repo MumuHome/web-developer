@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            box-sizing: border-box;
+            width: 200px;
+            height:200px;
+            background: pink;
+            margin: 100px;
+            border-left: 15px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字我是一段文字</div>
+</body>
+<script>
+    var div = document.getElementById("box");
+    console.log( "offsetHeight：" + div.offsetHeight);
+    console.log( "clientHeight：" + div.clientHeight);
+    console.log( "scrollHeight：" + div.scrollHeight);
+</script>
+</html>

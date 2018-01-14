@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="测试jq_get方法" id="jqGet">
+<script src="jquery.min.js"></script>
+<script>
+    $(function () {
+//        on绑定事件 参数一：事件的名字，不需要on 参数二：绑定的函数
+        $("#jqGet").on('click',function () {
+//            使用get发送ajax  参数一：url
+//              参数二：发送的数据 支持直接写js对象
+//              参数三：回调函数 通过形参获取实参（返回的数据）
+//              参数四：从服务器端获取的数据类型，可以不写，如果写为json
+//            jq内部会帮我们进行json.parse()的转化
+//            注意：如果type为json 并且服务端返回的就是json格式字符串 jq内部会帮助我们自动转化 在回调函数获取的实参
+//            参数的顺序是可以对换的 但是如果把data放到后面会出现无法传递数据的问题
+            $.get("jq_get.php",{name:"jack",age:18},function (data) {
+                console.log(data);
+                console.log(data.name);
+                console.log(data.color);
+            },'json');
+        })
+    })
+</script>
+</body>
+</html>

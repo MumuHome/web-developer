@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .search{
+            position: relative;
+            width: 200px;
+            margin: 20px auto;
+        }
+        .search input{
+            width: 200px;
+            height: 25px;
+        }
+        .search label{
+            font-size: 12px;
+            color: #ccc;
+            position: absolute;
+            top: 8px;
+            left: 20px;
+            cursor: text;
+        }
+    </style>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            function $(obj) {
+                return document.getElementById(obj)
+            }
+            $("txt").oninput = function () {
+                if ( this.value == "" ){
+                    $("message").style.display = "block";
+                }else {
+                    $("message").style.display = "none";
+                }
+            }
+            //ie的输入事件
+            $("txt").onpropertychange = function () {
+                if ( this.value == "" ){
+                    $("message").style.display = "block";
+                }else {
+                    $("message").style.display = "none";
+                }
+            }
+            //把两个综合在一起
+            $("txt").oninput = $("txt").onpropertychange = function () {
+                if ( this.value == "" ){
+                    $("message").style.display = "block";
+                }else {
+                    $("message").style.display = "none";
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div class="search">
+    <input id="txt">
+    <!--for id会把label跟input联系在一起-->
+    <label id="message" for="txt">必败的国际大牌</label>
+</div>
+</body>
+</html>

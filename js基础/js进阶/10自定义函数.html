@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //直接函数声明
+        var num = 10;
+        function fun() {
+            alert("我是一个函数")
+        }
+//        fun();
+        //函数直接量声明
+        var fun1 = function () {
+            alert("函数直接量声明")
+        }
+//        fun1();
+
+        //利用关键字声明
+        var fun2 = new Function(" var a = 10; var b =20; alert(a+b) ");
+        fun2();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #login{
+            color: white;
+            line-height: 2;
+            background: #369;
+            padding-left: 20px;
+        }
+        #box{
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #cccccc;
+            box-sizing: border-box;
+            top: 100px;
+            left: 200px;
+            display: none;
+            background: white;
+            box-shadow: 6px 6px 10px rgba( 0,0,0,0.2 );
+        }
+        #head{
+            width: 100%;
+            line-height:2;
+            background: #666;
+            color: white;
+            font-size: 16px;
+            overflow: hidden;
+            cursor: move;
+        }
+        #head p{
+            float: left;
+        }
+        #close{
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 10px;
+            background: red;
+            text-align: center;
+            color: white;
+            float: right;
+            font-size: 14px;
+            margin-top: 6px;
+            margin-right: 4px;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+<p id="login">点击注册</p>
+<div id="box">
+    <div id="head">
+        <p>注册表单（可拖动）</p>
+        <span id="close">X</span>
+    </div>
+</div>
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    $("login").onclick = function () {
+        $("box").style.display = "block";
+    }
+    $("close").onclick = function () {
+        $("box").style.display = "none";
+    }
+    $("head").onmousedown = function (event) {
+        var event = event || window.event;
+        var startX = event.clientX - this.parentNode.offsetLeft;
+        var startY = event.clientY - this.parentNode.offsetTop;
+        var that = this;
+        document.onmousemove = function (event) {
+            var event = event || window.event;
+            that.parentNode.style.left = event.clientX - startX + "px";
+            that.parentNode.style.top = event.clientY - startY + "px";
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null;
+        }
+        //防止选择拖动
+        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+    }
+</script>
+</body>
+</html>

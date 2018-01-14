@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function fun() {
+        //this指向函数的调用者或事件的调用者
+        alert(this);
+    }
+    fun();  //这个this指向的是window
+    function fn() {
+        alert(this);
+    }
+    new fn();   //此时添加了new的函数 this指向的是 新的对象
+
+    function again() {
+        this.x = 10;
+    }
+    again();
+    console.log(x); //即：console.log(window.x);
+
+    function person() {
+        this.x = 20;
+    }
+    var demo = new person();//实例对象
+    console.log(demo.x);
+
+</script>
+</body>
+</html>

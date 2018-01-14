@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+字符串<input type="text" id="txt"><br>
+索引的字符串<input type="text" id="search"><br>
+<button id="btn1">从前面查找字符位置</button>
+<button id="btn2">从后面查找字符位置</button>
+<script charset="utf-8" type="text/javascript">
+//    var a = "dsggas";
+//    alert(a.indexOf("a"));
+    function $(id) {
+        return document.getElementById(id)
+    }
+    $("btn1").onclick = function () {
+          alert($("txt").value.indexOf($("search").value));
+    }
+    $("btn2").onclick = function () {
+        alert($("txt").value.lastIndexOf($("search").value));
+    }
+
+</script>
+</body>
+</html>

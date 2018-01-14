@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 100%;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box">我是一个盒子</div>
+<a href="javascript:;" id="jd-close">X</a>
+<!--隐藏的两种方式：-->
+<!--dispiay:none;隐藏不占位置-->
+<!--visibility:hidden;隐藏但还占位置-->
+<script charset="utf-8" type="text/javascript">
+    var dom = document.getElementById("box");
+    var close = document.getElementById("jd-close");
+    close.onclick = function () {
+        dom.style.display = "none";
+    }
+</script>
+</body>
+</html>

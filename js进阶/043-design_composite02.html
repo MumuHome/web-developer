@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript" src="../new-text/CommonUtil.js"></script>
+    <script charset="utf-8" type="text/javascript">
+        // 组合模式应用的场景和特点
+        // 场景：
+        // 1、存在一批组织成某种层次体系的对象
+        // 2、希望对这批对象的一个或一部分执行一个操作
+        // 特点：
+        // 1、组合模式中只有两种对象  组合对象&叶子对象
+        // 2、组合对象都实现同一批接口
+        // 3、一般我们会在组合对象中调用方法，并隐式地调用其下级方法（一般采用递归）
+        /* 场景模式
+         * 公司
+         *       开发部门
+         *               张1
+         *               张4
+         *       销售部门
+         *               张2
+         *               张3
+         *
+         *  实际的任务只能由具体的人来实施
+         * */
+        var CompositeInterface = new XJ.Interface('CompositeInterface',['addChild','getChild']);
+        var LeafInterface = new XJ.Interface('LeafInterface',['hardworking','sleeping']);
+
+        var Composite = function (name) {
+            this.name = name;
+            this.type = 'Composite'; //说明对象的类型（组合对象）
+            this.children = []; //盛装孩子的数组
+        }
+        Composite.prototype = {
+            constructor:Composite,
+            addChild:function (child) {
+                this.children.push(child);
+                return this;
+            },
+            getChild:function (name) {
+                //接收叶子对象类型的数组
+                var elements = [];
+                // 判断对象是否为leaf类型，如果是直接加到elements数组中，不是则继续递归调用
+                var pushLeaf = function (item) {
+                    if (item.type === 'Composite'){
+                        item.children.each(arguments.callee)
+                    } else if (item.type === 'Leaf'){
+                        elements.push(item)
+                    }
+                }
+                if (name && this.name !== name){ //根据name让指定name下所有类型为Leaf的对象去操作 注意此时的this指代的是谁？？
+                    this.children.each(function (item) {
+                        // 如果传递的name是二级节点名称 且为一个数组
+                        if (item.name === name && item.type === 'Composite') {
+                            item.children.each(pushLeaf);
+                        }
+                        // 如果传递的name是三级节点及以下
+                        if (item.name !== name && item.type === 'Composite') {
+                            item.children.each(arguments.callee);
+                        }
+                        // 如果传递的name是叶子节点
+                        if ( item.name === name && item.type === 'Leaf'){
+                            elements.push(item);
+                        }
+
+                    });
+                }else{ // 不传名字 让整个公司所有类型为Leaf的对象去操作 （用到了之前写的遍历数组each方法）
+                    this.children.each(pushLeaf);
+                }
+                return elements;
+
+            },
+            hardworking:function (name) {
+                // 得到所有的leaf类型的对象数组
+                var leafObjs = this.getChild(name);
+                for (var i=0; i<leafObjs.length; i++){
+                    leafObjs[i].hardworking();
+                }
+            },
+            sleeping:function (name) {
+//              // 得到所有的leaf类型的对象数组
+                var leafObjs = this.getChild(name);
+                for (var i=0; i<leafObjs.length; i++){
+                    leafObjs[i].sleeping();
+                }
+            },
+        };
+
+        var Leaf = function (name) {
+            this.name = name;
+            this.type = 'Leaf';
+        };
+        Leaf.prototype = {
+            constructor:Leaf,
+            addChild:function (child) {
+                throw new Error ('this method is disable...')
+            },
+            getChild:function (name) {
+                if ( this.name = name ){
+                    return this;
+                }
+            },
+            hardworking:function () {
+                document.write(this.name + '努力工作')
+            },
+            sleeping:function () {
+                document.write(this.name + '努力睡觉')
+            },
+        }
+
+        var p1 = new Leaf('张1');
+        var p2 = new Leaf('张2');
+        var p3 = new Leaf('张3');
+        var p4 = new Leaf('张4');
+
+        var dept1 = new Composite('开发部门');
+        dept1.addChild(p1).addChild(p4);
+        var dept2 = new Composite('销售部门');
+        dept2.addChild(p2).addChild(p3);
+
+        var org = new Composite('慕兮大人的公司');
+        org.addChild(dept1).addChild(dept2);
+
+        //org.hardworking('开发部门');
+        // 让整个公司所有的节点都hardworking
+        org.hardworking('开发部门');
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

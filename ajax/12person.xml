@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 最顶层必须有一个根节点 -->
+<!-- key是自己定义的 -->
+<person>
+	<name>徐娟</name>
+	<skill>唱歌</skill>
+	<song>白杨和小河</song>
+</person>

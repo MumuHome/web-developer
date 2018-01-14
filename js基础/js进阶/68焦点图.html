@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding: 0;
+    }
+    img{
+        display: block;
+        /*取消图片底部3px的距离*/
+    }
+    ul{
+        list-style: none;
+        width: 400%;
+        position: absolute;
+        left:0;
+    }
+    ul li{
+        float: left;
+    }
+    #bigBox{
+        width: 600px;
+        height: 200px;
+        margin: 100px auto;
+        background: pink;
+        position: relative;
+        overflow: hidden;
+    }
+    ol{
+        position: absolute;
+        overflow: hidden;
+        left: 50%;
+        margin-left: -70px;
+        bottom: 6px;
+    }
+    ol li{
+        list-style: none;
+        box-sizing: border-box;
+        width: 16px;
+        height: 16px;
+        border: 1px solid white;
+        margin: 10px;
+        border-radius: 10px;
+        float: left;
+        color: white;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+    }
+    .current{
+        background: white;
+        color: #333;
+    }
+    #big{
+        position: relative;
+    }
+    #arr{
+        width: 680px;
+        position: absolute;
+        top:45%;
+        left: 50%;
+        margin-left: -340px;
+        font-size: 30px;
+        color: #666;
+        overflow: hidden;
+        font-weight: bold;
+    }
+    #arr span:nth-child(1){
+        float: left;
+        width: 50%;
+        display: block;
+        text-align: left;
+    }
+    #arr span:nth-child(2){
+        float: right;
+        width: 50%;
+        display: block;
+        text-align: right;
+    }
+</style>
+<body>
+<div id="big">
+    <div id="bigBox">
+        <ul id="ul">
+            <li><img src="../../html5/images/01.jpg"></li>
+            <li><img src="images/02.jpg"></li>
+            <li><img src="images/03.jpg"></li>
+            <li><img src="images/04.jpg"></li>
+            <li><img src="../../html5/images/01.jpg"></li>
+        </ul>
+    </div>
+    <div id="arr"><span id="left"> < </span><span id="right"> > </span></div>
+    <ol>
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+</div>
+<script charset="utf-8" type="text/javascript">
+    var dom = document.getElementById("big");
+    var ul = dom.children[0].children[0];
+    var ol = dom.children[2];
+    var point = ol.children;
+    for ( var i=0 ; i<point.length ; i++ )
+    {
+        point[i].index = i;
+        point[i].onmouseover = function () {
+            for ( var j=0 ; j<point.length ; j++ )
+            {
+                point[j].className = "";
+            }
+            this.className = "current";
+            target = -this.index * 300 ;    //目标位置就是当前的索引号*目标位置的宽度
+        }
+    }
+    //鼠标指向图片滑动
+    var leader = 0,target = 0;
+    setInterval(function () {
+        leader = leader + ( target - leader )/10;
+        ul.style.left =leader + "px";
+    },30)
+</script>
+</body>
+</html>

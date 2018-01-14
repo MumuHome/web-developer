@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #bigBox{
+            width: 200px;
+            position: relative;
+            margin: 0 auto;
+        }
+        .img{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+            display: none;
+        }
+        .circle{
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            margin-left: -50%;
+            overflow: hidden;
+        }
+        .circle span{
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin: 8px;
+            text-align: center;
+            border: 1px solid pink;
+            line-height: 20px;
+            color: pink;
+            cursor: pointer;
+        }
+        .circle span.point{
+            background: pink;
+            color: white;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+<div id="bigBox">
+    <div class="slider">
+        <div class="img" style="display: block">1</div>
+        <div class="img">2</div>
+        <div class="img">3</div>
+        <div class="img">4</div>
+        <div class="img">5</div>
+    </div>
+</div>
+<script charset="utf-8" type="text/javascript">
+    //封装一个获取某个id下面的class  id可以不写
+    function getClass(id,classname) {
+        //如果支持getElementsByClassName
+        if ( document.getElementsByClassName )
+        {
+            if (id){
+                var id = document.getElementById(id);
+                return id.getElementsByClassName(classname);
+            }else
+            {
+                return document.getElementsByClassName(classname);
+            }
+        }
+        //如果不支持
+        if (id)
+        {
+            var id = document.getElementById(id);
+            var obj = id.getElementsByTagName("*");
+        }else
+        {
+            var obj = document.getElementsByTagName("*")
+        }
+
+        var arr = [];
+        for ( var i=0 ; i<obj.length ; i++ )
+        {
+            var txt = obj[i].className.split(" ");
+            for ( var j=0 ; j<txt.length ; j++ )
+            {
+                if ( txt[j] == classname )
+                {
+                    arr.push(obj[i]);
+                }
+            }
+        }
+        return arr;
+    }
+//    alert(getClass("bigBox","img").length)
+    //动态生成轮播图按钮
+    var bigBox = document.getElementById("bigBox");
+    var img = getClass("bigBox","img");
+    var circle = document.createElement("div");
+//    circle.className = "circle";  //设置circle的属性为circle
+    circle.setAttribute("class","circle");  //设置circle的属性为circle
+    bigBox.appendChild(circle);
+    var sp = [];
+    for ( var i=0 ; i<img.length ; i++ )
+    {
+        sp[i] = document.createElement("span");
+        sp[i].innerHTML = i+1;
+        circle.appendChild(sp[i]);
+    }
+    var child = circle.children;
+    child[0].setAttribute("class","point");
+
+</script>
+</body>
+</html>

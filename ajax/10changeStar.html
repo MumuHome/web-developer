@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        .img{
+            width: 200px;
+            height: 200px;
+            border:1px solid #ccc;
+            margin:20px auto;
+        }
+        .info{
+            border:1px solid #ccc;
+            margin:20px auto;
+            width: 200px;
+            height: 100px;
+        }
+        input{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<dl class="box">
+    <dt class="img"><img></dt>
+    <dl class="info"></dl>
+</dl>
+<input type="button" id="btn1" value="baby">
+<input type="button" id="btn2" value="hxm">
+<input type="button" id="btn3" value="lh">
+</body>
+</html>
+<script>
+//    为按钮绑定点击事件
+    var btn = document.querySelectorAll('input');
+//    var img = document.querySelectorAll('.dl');
+    var img = document.querySelector('.img');
+    for( var i=0 ; i<btn.length ; i++ )
+    {
+        btn[i].onclick = function () {
+            var ajax = new XMLHttpRequest();
+//            使用post
+            ajax.open('post','10star_img.php');
+//            必须要设置请求报文
+            ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+//            发送请求
+            ajax.send('name='+this.value);
+//            注册事件
+            ajax.onreadystatechange = function () {
+                if ( ajax.readyState==4 && ajax.status==200 )
+                {
+//                    console.log(ajax.responseText);
+                    console.log(img.children[0]);
+                    img.children[0].setAttribute('src',ajax.responseText);
+                }
+            }
+        }
+    }
+</script>

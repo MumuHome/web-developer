@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<input id="inp" type="button" value="点击我">
+<script charset="utf-8" type="text/javascript">
+    // 模拟jquery底层链式编程
+    // 块级作用域 程序启动的时候 里面的代码直接执行了
+    // 特点1 程序启动的时候 里面的代码直接执行了
+    // alert('我执行了')
+    // 内部成员表量 外部无法访问 （除了不加var修饰的变量）
+    // var a = 10;
+    (function (window,undefined) {
+        // $ 最常用的对象 返回给外界 大型程序开发一般使用"_"作为私有的对象（规范）
+        function _$(arguments) {
+            // 实现代码...
+            // 正则表达式匹配id选择器
+            var idSelector = /#\w+/;
+            this.dom;  // 此属性接收所得到的元素
+            // 如果匹配成功 则接收dom元素 arguments[0] = '#inp'
+            if (idSelector.test(arguments[0])){
+                this.dom = document.getElementById(arguments[0].substring(1)); // 截取除了'#'之外其他的字符串内容
+            }else{
+                throw new Error ('arguments is error')
+            }
+        };
+        // 在_$的原型对象上 加一些公共的方法
+        _$.prototype = {
+            constructor : _$,
+            addEvent : function (type,fn) {
+                //alert('addEvent');
+
+                if (window.addEventListener){  // FF火狐浏览器
+                    this.dom.addEventListener(type,fn);
+                }else if (window.attachEvent)   {   // ie浏览器
+                    this.dom.attachEvent('on'+type,fn);
+                }
+                return this;
+            },
+            setStyle : function (prop,val) {
+                this.dom.style[prop] = val;
+                //alert('setStyle');
+                return this;
+            }
+        };
+        // 在function上扩展一个可以实现链式编程的方法
+        Function.prototype.method = function (methodName,fn) {
+            this.prototype[methodName]= fn;
+            return this;  // 链式编程的关键
+        };
+
+        window.$ = _$; // window上先注册一个全局变量 与外界产生关系
+
+        _$.onReady = function (fn) { // 写一个准备的方法
+            window.$ = function () { // 1、实例化出来_$对象 真正注册到window上
+                return new _$(arguments);
+            };
+            // 2、执行传入进来的代码
+            fn();
+            // 3、实现链式编程
+            _$.method('addEvent',function () {}).method('setStyle',function () {});
+
+        }
+
+    })(window); // 程序的入口 window传入作用域中
+
+    $.onReady(function () {
+        var inp = $('#inp');
+        alert(inp.dom.nodeName);
+        //alert($());
+        //$('#inp').addEvent().setStyle();
+        inp.addEvent('click',function () {
+            alert('我被点击了')
+        }).setStyle('backgroundColor','red');
+    })
+
+</script>
+</body>
+</html>

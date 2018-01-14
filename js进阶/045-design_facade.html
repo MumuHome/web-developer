@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript" src="../new-text/CommonUtil.js"></script>
+    <script charset="utf-8" type="text/javascript">
+
+        // 门面模式的概念：简化API接口  最经典的就是事件
+        // 做一件事，必须要调用两个函数 a，b
+        /*
+        function a(x) {
+            // 一些代码
+        };
+        function b(y) {
+            // 一些代码
+        };
+
+        function ab(x,y) {
+            a(x);
+            b(y)
+        }
+        */
+        // 现在有一个简单的需求，获得页面上的元素 给得到的元素设置css
+        // 需求发生变化，同时设置多个元素的css样式
+        window.onload = function () {
+            //给一个元素设置一个样式
+//            var element = document.getElementById('div1');
+//            element.style.color = 'red';
+
+            //给多个元素设置同样的样式
+            //setStyle(['div1','div2','div3'],'color','red');
+
+            //给多个元素设置多个样式
+            setCss(['div1','div2','div3'],{
+                background:'yellow',
+                fontSize:'18px',
+            })
+        }
+        // 简单的门面模式
+        function setStyle(elementsId,prop,val) {
+            for ( var i = 0;i<elementsId.length ;i++){
+                document.getElementById(elementsId[i]).style[prop] = val;
+            }
+        }
+        // 门面模式的css方法
+        function setCss(elementsId,options) {
+            for ( var prop in options ){
+                if (!options.hasOwnProperty(prop)) continue;
+                setStyle(elementsId,prop,options[prop]);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="div1">我是一个盒子</div>
+    <div id="div2">我是一个盒子</div>
+    <div id="div3">我是一个盒子</div>
+
+</body>
+</html>

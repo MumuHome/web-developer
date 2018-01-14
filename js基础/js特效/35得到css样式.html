@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    var box = document.getElementById("box");
+    console.log(box.style.width)    //得到空值，只能取行内
+    //console.log(box.currentStyle.left)  //ie得到css
+    console.log(window.getComputedStyle(box,null).width);
+</script>
+</body>
+</html>

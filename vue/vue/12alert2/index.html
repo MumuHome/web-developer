@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: #f0f0f0;
+        }
+        .alert{
+            width: 500px;
+            height: 40px;
+            padding: 10px;
+            color: whitesmoke;
+        }
+        .content{
+            overflow: hidden;
+        }
+        .message{
+            float: left;
+        }
+        .closebtn{
+            float: right;
+        }
+        .success{
+            background: green;
+        }
+        .info{
+            background: skyblue;
+        }
+        .error{
+            background: indianred;
+        }
+        .warning{
+            background: darkorange;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--此时false是布尔值，不是字符串，要想不将他识别为字符串，那么前面需要加：动态渲染后面的值-->
+    <xj-alert type="success" title="成功啦!" :closeshow='false'></xj-alert>
+    <xj-alert type="warning" title="警告：请检查输入是否符合规范" @closeevent="close"></xj-alert>
+    <xj-alert type="error" @closeevent="close">
+        <span slot="content">这是一条默认提示</span>
+    </xj-alert>
+</div>
+<script>
+//    alert提醒框有四种状态
+//    info success error warning
+//    设置的props
+//    type 提醒框类型 默认为info
+//    title 提示信息 '这里有一个消息要提示'
+//    closeable 是否禁用关闭 默认为true
+//    showIcon 是否显示图标 默认为false
+//    style 设置提醒框样式 默认为{}
+    Vue.component('xj-alert',{
+        props:{
+            type:{
+                type:String,
+                default:'info'
+            },
+            title:{
+                type:String,
+                default:'这是一条默认提示'
+            },
+            closeshow:{
+                type:Boolean,
+                default:true
+            }
+        },
+        computed:{
+            types(){
+                return this.type;
+            }
+        },
+        <!--动态绑定class的第一种写法  :class="{success:type==='success',info:type==='info',error:type==='error'}"-->
+        template:`
+        <div class="alert" :class="[types]">
+        <i class="icon">icon</i>
+        <div class="content">
+            <slot name="content"><span class="message">{{ title }}</span></slot>
+            <i class="closebtn icon-close" v-show="closeshow" @click="close">关闭</i>
+        </div>
+    </div>
+        `,
+        methods:{
+            close(){
+                this.$emit('closeevent');
+            }
+        }
+    });
+    new Vue({
+        el:'#app',
+        methods:{
+            close(){
+                alert('关闭了')
+            }
+        }
+    })
+</script>
+</body>
+</html>

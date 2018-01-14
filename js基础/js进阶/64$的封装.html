@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="dom"></div>
+<div></div>
+<div class="dom"></div>
+<div></div>
+<div></div>
+<div></div>
+<script charset="utf-8" type="text/javascript">
+//    function $(id) {
+//        return document.getElementById(id)
+//    }
+
+function getClass(classname) {
+    if ( document.getElementsByClassName ){
+        return document.getElementsByClassName(classname);
+    }
+
+    var arr = [];  //用于返回数组
+    var dom = document.getElementsByTagName("*");
+    for ( var i=0 ; i<dom.length ; i++ ){
+        var txt = dom[i].className.split(" ");
+        for ( var j=0 ; j<txt.length ; j++ ){
+            if ( txt[j] == classname ){
+                arr.push(dom[i]);
+            }
+        }
+    }
+    return arr;
+}
+//封装自己的$
+    function $(str) {
+        var s = str.charAt(0);   //通过后面的索引号返回字符，存放符号
+        var ss = str.substr(1);
+        switch (s)
+        {
+            case "#":
+                return document.getElementById(ss);
+                break;
+            case ".":
+                return getClass(ss);
+                break;
+            default:
+                return document.getElementsByTagName(str);
+        }
+    }
+
+$("#dom").style.backgroundColor= "red" ;   //获取id
+var one = $(".dom");//获取class
+for ( var i=0; i<one.length ; i++ )
+{
+    one[i].style.backgroundColor = "white";
+}
+$("div");
+
+
+</script>
+</body>
+</html>

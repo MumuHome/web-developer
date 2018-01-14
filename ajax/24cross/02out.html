@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<h1>我是外部的页面</h1>
+<iframe src="in.html"></iframe>
+</body>
+</html>
+<script>
+    window.onload = function () {
+        var dom = document.querySelector("iframe");
+//        获取iframe中的window
+        var domWindow = dom.contentWindow;
+        console.log(domWindow);
+//        获取iframe中的document对象
+        var domWindowDocument = domWindow.document;
+        console.log(domWindowDocument);
+
+//        修改iframe中的页面颜色
+        domWindowDocument.body.style.background = "orange";
+//        为iframe中的文本框绑定一个失去焦点事件
+        domWindowDocument.querySelector("input").addEventListener('blur',function () {
+            console.log(this.value);
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','xx.php?name='+this.value);
+            ajax.send();
+        })
+    }
+</script>

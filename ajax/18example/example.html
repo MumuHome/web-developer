@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    准备正则
+    var reg = /\w+/;
+//    准备挖好坑的字符串
+    var str = '我是一个来自南方的name，爱吃foot，我的爱好是hobby，朋友是friend';
+//    准备用来填坑的对象
+    var obj = {
+        name:"柯基",
+        foot:"玉米",
+        hobby:"唱歌",
+        friend:"汪星人"
+    };
+//     exec() 方法用于检索字符串中的正则表达式的匹配，结果为数组。
+//     对于一个不知道执行次数的代码，优化
+//     首先使用正则对象验证一次 字符串while
+var result;
+while (result = reg.exec(str)){
+    //     获取匹配的key
+    var key = result[0];
+    var value = obj[key];
+    //    替换 参数1：被替换的  参数2：替换为
+    str = str.replace(key,value);
+    console.log(str);
+}
+</script>
+</body>
+</html>

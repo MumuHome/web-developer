@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(name,age) { //构造函数就是一个普通函数，为了区别首字母大写
+        this.name = name;
+        this.age = age;
+        this.showName = function () {
+            alert("我的名字是"+name)
+        };
+        this.showAge = function () {
+            alert("我的年龄是"+age)
+        }
+    }
+    var demo = new Person("徐娟",24);
+    var demo1 = new Person("徐娟",24);
+    console.log(demo.name);
+    console.log(demo["name"]);
+    console.log(demo.age);
+    demo.showName();
+    //两个demo的this指向的对象不同
+</script>
+</body>
+</html>

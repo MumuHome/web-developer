@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            width: 400px;
+            margin:200px auto;
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<h1>获取女神</h1>
+<input type="button" value="获取很多女神" id="getStars">
+</body>
+</html>
+<script>
+    document.querySelector("#getStars").onclick = function () {
+        var ajax = new XMLHttpRequest();
+        ajax.open('post','getStars.php');
+//        ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        ajax.send();
+        ajax.onreadystatechange = function () {
+            if ( ajax.readyState ==4&& ajax.status==200 )
+            {
+                console.log(JSON.parse(ajax.responseText)[0]);
+                var jsonObj = JSON.parse(ajax.responseText);
+//                这里也放到一个table中
+                var str ='';
+                str+='<table>';
+                for ( var i=0;i<jsonObj.length; i++ )
+                {
+                    var currentObj = jsonObj[i];
+                    str+='<tr>';
+                    str+='<td>'+currentObj.name+'</td>';
+                    str+='<td>'+currentObj.skill+'</td>';
+                    str+='<td><img src="'+currentObj.path+'"></td>';
+                    str+='</tr>'
+                }
+                str+='</table>';
+            }
+            document.body.innerHTML = str;
+        }
+    }
+</script>

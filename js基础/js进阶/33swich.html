@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            //获取元素
+            var txt = document.getElementById("txt");
+            var btn = document.getElementById("btn")
+            btn.onclick = function () {
+                var val = txt.value;
+                switch (val){
+                    case "苹果":alert("苹果的价格是5元");
+                    break;
+
+                    case "香蕉":alert("香蕉的价格是2元");
+                    break;
+
+                    case "大白菜":alert("大白菜的价格是1元");
+                    break;
+
+                    default:alert("没有这个水果");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="txt">
+<button id="btn">查询价格</button>
+</body>
+</html>

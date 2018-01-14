@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="pic" src="img/1.jpg" width="200px">
+<span id="btn1">01</span>
+<span id="btn2">02</span>
+<span id="btn3">03</span>
+<span id="btn4">04</span>
+<span id="btn5">05</span>
+
+<script charset="utf-8" type="text/javascript">
+    var pic = document.getElementById("pic");
+//    var btn = {};
+//    for ( i=0 ; i<= 4 ;i++ ){
+//        btn[i] = document.getElementsByTagName()
+//    }
+    var btn = document.getElementsByTagName("span");
+
+    btn[0].onmouseover = function () {
+        pic.src = "img/1.jpg"
+    };
+    btn[1].onmouseover = function () {
+        pic.src = "img/2.jpg"
+    };
+    btn[2].onmouseover = function () {
+        pic.src = "img/3.jpg"
+    };
+    btn[3].onmouseover = function () {
+        pic.src = "img/4.jpg"
+    };
+    btn[4].onmouseover = function () {
+        pic.src = "img/5.jpg"
+    };
+
+</script>
+</body>
+</html>

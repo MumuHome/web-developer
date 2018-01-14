@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>history api</title>
+    <style>
+        html,body{
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        aside{
+            width: 200px;
+            height: 100%;
+            float: left;
+            background: #f0f0f0;
+            line-height: 2;
+        }
+        #list li{
+            cursor: pointer;
+        }
+        .active{
+            background: #ccc;
+        }
+        article{
+            margin-left: 200px;
+            padding: 20px;
+            overflow: scroll;
+            height: 100%;
+        }
+    </style>
+    <script src="data.js"></script>
+</head>
+<body>
+<aside>
+    <ul id="list">
+    </ul>
+</aside>
+<article>
+    <p id="content"></p>
+</article>
+<script>
+    (function () {
+        var list = document.querySelector('#list');
+        for ( var title in data )
+        {
+            var li = document.createElement("li");
+            li.innerHTML = title;
+//            给每一个li标记一个data-title值
+            li.setAttribute('data-title',title);
+            list.appendChild(li);
+        }
+        var lis = document.querySelectorAll('#list>li');
+        var con = document.querySelector('#content');
+//        con.innerHTML = data[1];
+//        注册元素事件
+        for ( var i=0 ; i<lis.length ; i++ )
+        {
+            lis[i].addEventListener('click',function () {
+//                拿到被点击事件的元素
+                var title = this.dataset['title'];
+                 con.innerHTML = data[title];
+//                 操作历史记录
+                if ( window.history && history.pushState)
+                {
+//                    添加一个新的历史
+                    history.pushState(title,'title没有任何浏览器支持','?t=' + title);
+                }else
+                {
+                    console.log("抱歉，不支持")
+                }
+//                当我们在伪造的访问历史中前进或后退时会执行一个popstate事件
+                window.addEventListener('popstate',function (e) {
+                    con.innerHTML = data[e.state];
+                })
+
+                 for ( var i =0 ; i<lis.length ; i++ )
+                 {
+                     lis[i].classList.remove('active')
+                 }
+                 this.classList.add('active');
+            })
+        }
+//        con.innerHTML = data['五环之歌'];
+//                第一次请求过来时，获取地址栏中的t参数
+        var title = window.location.search.split('=')[1];
+        if (title)
+        {
+//                    有值时
+//                    ecodeURI是从url编码转换到之前的状态
+            con.innerHTML = data[decodeURI(title)];
+        }
+    })();
+</script>
+</body>
+</html>

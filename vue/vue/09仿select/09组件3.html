@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <h2>自定义下拉框1</h2>
+    <!--必须要在符合w3c规定的地方放入自定义标签 否则就要使用is进行扩展-->
+    <table>
+        <tr>
+            <!--用v-bind绑定list属性-->
+            <td><custom-select btn-value="查询" :list="list1"></custom-select></td>
+        </tr>
+    </table>
+    <!--自定义标签 自定义属性 注意：命名只能是烤串-->
+
+    <h2>自定义下拉框2</h2>
+    <!--自定义标签 自定义属性-->
+    <custom-select btn-value="搜索" :list="list2"></custom-select>
+</div>
+<script>
+//    要使用组件 先注册组件 全局注册 参数一：组件名 参数二：对组件的描述
+    Vue.component('custom-select',{
+//        每个组件可以定义数据 此时data不能定义为对象，只能定义为函数
+        data:function () {
+//            每个data函数返回自己的selectShow 不会影响别的组件
+            return {
+                selectShow:false,
+//                记录下拉框中选择的数据
+                val:''
+            }
+        },
+//        接收自定义属性 注意：命名要修改成驼峰
+        props:['btnValue','list'],
+//        调用了下面的custom-list模板，那么这就是父组件，下面的就是子组件
+        template:`
+            	<section class="warp">
+		<div class="searchIpt clearFix">
+			<div class="clearFix">
+				<input type="text" class="keyWord" :value="val"  @click="selectShow=!selectShow"/>
+				<input type="button" :value="btnValue">
+				<span></span>
+			</div>
+			<custom-list v-show="selectShow" :list="list" @receive="changeVal"></custom-list>
+		</div>
+	</section>
+        `,
+//        给父级添加自定义事件后，需要给他添加这个函数对应的方法
+        methods:{
+//            changeVal:function () {
+//                alert('我被触发了');
+//            }
+            changeVal(value){
+//                console.log('我被触发了，值为'+value)
+                this.val = value
+            }
+        }
+    });
+
+//    把ul单独提出来 做成模板
+    Vue.component('custom-list',{
+//        要接收自定义属性，需要每一层都有一个props
+        props:['list'],
+        template:`
+        <ul class="list">
+				<li v-for="item in list" @click="selectValue(item)">{{ item }}</li>
+			</ul>
+        `,
+        methods:{
+            selectValue:function (item) {
+//                在子组件中有交互
+//                告知父级，改变val的值，触发一个自定义事件（先给父级绑定这个自定义事件）
+//                参数一：父级自定义事件的名字，参数二：需要传递的值
+                this.$emit('receive',item);
+            }
+        }
+    });
+
+    new Vue({
+        el:'#app',
+        data:{
+            list1:['北京','上海','杭州'],
+            list2:['2017-02-17','2017-02-18','2017-02-19']
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            list-style: none;
+            margin:0;
+            padding: 0;
+        }
+        ul{
+            width: 600px;
+            margin:100px auto;
+            display: flex;
+            border: 1px solid #ccc;
+        }
+        li{
+            flex: 1;
+            text-align: center;
+            line-height: 80px;
+            background: pink;
+            margin:0 5px;
+        }
+        .layout{
+            width: 600px;
+            height: 800px;
+            margin:50px auto;
+            border:1px solid #ccc;
+            /*伸缩布局*/
+            display: flex;
+            /*主轴方向*/
+            flex-direction: column;
+        }
+        .header{
+            background: pink;
+            flex: 1;
+        }
+        .section{
+            background: yellow;
+            flex: 5;
+            display: flex;
+        }
+        .left{
+            background: blue;
+            flex: 1;
+        }
+        .right{
+            background: orange;
+            flex: 3;
+        }
+        .footer{
+            background: red;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>消息</li>
+    <li>通讯录</li>
+    <li>发现</li>
+    <li>我的</li>
+    <li>空间</li>
+</ul>
+
+<div class="layout">
+    <div class="header"></div>
+    <div class="section">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <div class="footer"></div>
+</div>
+</body>
+</html>

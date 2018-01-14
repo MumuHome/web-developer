@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 250px;
+            height: 250px;
+            background: green;
+            margin:100px;
+            /*animation: move 2s;*/
+            /*animation属性详解*/
+            /*动画名称*/
+            animation-name:move;
+            /*持续时间*/
+            animation-duration: 2s;
+            /*执行次数*/
+            animation-iteration-count: 4;
+            /*动画方向 normal正常 alternate反向*/
+            animation-direction: alternate;
+            /*延迟执行时间*/
+            animation-delay: 1s;
+            /*设置动画结束后盒子的状态*/
+            /*forwards:保持动画结束后的状态*/
+            /*backwards:保持动画开始时的状态*/
+            animation-fill-mode: forwards;
+            /*运动曲线（时间函数） linear  ease-in-out  steps()分为几步*/
+            animation-timing-function: steps(10);
+        }
+        @keyframes move {
+            0%{
+                /*transform: translateX(500px) rotate(500deg);*/
+            }
+            100%{
+                transform: translateX(500px) rotate(500deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

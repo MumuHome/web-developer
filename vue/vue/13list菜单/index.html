@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<ul>-->
+        <!--<li>-->
+            <!--<div>目录</div>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<div>我的音乐</div>-->
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<div>周杰伦</div>-->
+                            <!--<ul>-->
+                                <!--<li>发如雪</li>-->
+                                <!--<li>黑色毛衣</li>-->
+                                <!--<li>告白气球</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div>林俊杰</div>-->
+                            <!--<ul>-->
+                                <!--<li>江南</li>-->
+                                <!--<li>一眼万年</li>-->
+                                <!--<li>就是我</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div>我的相册</div>-->
+                    <!--<ul></ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</li>-->
+    <!--</ul>-->
+    <tree :data="treeList"></tree>
+</div>
+</body>
+<script>
+//    传入的数据结构：
+//    [{
+//        title:xxx,
+//        children:[
+//            title:xxx,
+//            children:[
+//            ]
+//        ]
+//    }]
+
+//    设置的props：
+//    data 数据结构 默认为[]
+
+//    定制模板：
+//    不可定制
+
+//    监控事件变化：
+//    点击树节点触发
+
+    Vue.component('tree',{
+        props:{
+            data:{
+                type:Array,
+                default:[]
+            }
+        },
+        <!--data为父组件自定义属性 由外部js定义 通过vue内部data传入id=app的组件，同时在父组件渲染在行间 子组件用props接收-->
+        <!-- 如果循环的item有children 那么就有下一级 -->
+        template:`
+        <ul>
+            <li v-for="item in data">
+                <div>{{ item.title }}</div>
+                <tree v-if="item.children" :data="item.children"></tree>
+            </li>
+        </ul>
+        `
+    });
+
+    var treenode = [{
+        title:'目录',
+        children:[{
+            title:'我的音乐',
+            children:[{
+                title:'周杰伦',
+                children:[{
+                    title:'七里香',
+                    children:[{}]
+                },{
+                    title:'告白气球',
+                    children:[{}]
+                }]
+            },{
+                title:'林俊杰',
+                children:[{
+                    title:'江南'
+                },{
+                    title:'一眼万年'
+                }]
+            }]
+        },{
+            title:'我的相册'
+        }]
+    }];
+
+    new Vue({
+        el:'#app',
+        data:{
+            treeList:treenode
+        }
+    });
+</script>
+</html>

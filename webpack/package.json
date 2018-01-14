@@ -1,0 +1,9 @@
+{
+  "name": "webpack",
+  "version": "3.10.0",
+  "dependencies": {},
+  "devDependencies": {
+    "expose-loader": "^0.7.4",
+    "jquery": "^3.2.1"
+  }
+}

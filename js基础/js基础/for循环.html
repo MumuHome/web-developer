@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        // i的值为1，然后验证i<10是否满足，如果是真，则执行循环体，执行循环体之后会执行i=i+1，
+//        for ( var i = 0 ; i < 10 ; i++ ){
+//            document.write(i + " " );
+//        };
+//        for ( var j = -10; j++ ;){
+//            document.write(j + " ");
+//        }
+        // 输出所有能被7整除，或者尾数为7的数字，都算踩地雷，请输出1-60所有安全数
+//        for ( var i=0 ; i<=60 ; i++ ){
+//            if ( i%7== 0 || i%10==7 ){
+//
+//            }else {
+//                console.log(i);
+//            }
+//        }
+
+        //找出水仙花数，三位数，每个数的立方和等于它本身
+//        for ( var i=100 ; i<=999 ; i++ ){
+//            var a = parseInt(i/100);
+//            var b = parseInt( (i - parseInt(i/100)*100 )/10 );
+//            var c = i%10
+//            if ( Math.pow(a,3) + Math.pow(b,3) + Math.pow(c,3) == i )
+//            {
+//                console.log(i)
+//            }
+//        }
+
+        //求1-100的和
+//        var sum = 0;
+//        for ( var i=1 ; i<=100 ; i++ ){
+//            sum = sum + i;
+//        }
+//        alert(sum);
+
+        // 求13的阶乘
+//        var sum = 1;
+//        for ( var i=1 ; i<=13 ; i++ ){
+//            sum = sum * i;
+//        }
+//        alert(sum);
+
+        // 用户输入一个数，输出所有能整出他的数的个数
+//        var num = prompt("请输入数字");
+        console.log(panduanzhishu(34));
+        function panduanzhishu(num) {
+            var j = 0;
+            for ( var i=0 ; i<=num ; i++ ){
+                if ( num%i == 0 ){
+                    j=j+1;
+                }
+            }
+            if ( j==2 ){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jQ.js" charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<iframe src="" frameborder="0"></iframe>
+<object data=""></object>
+<embed src=""></embed>
+<svg data-src="task.svg"></svg>
+<script>
+    window.addEventListener("load",function () {
+        var svgs = document.getElementsByTagName("svg");
+        for ( var i=0; i<svgs.length ; i++ )
+        {
+            //定义一个src使其等于svgs元素data-src的值
+            var src = $(svgs[i]).data("src");
+//            var src = svgs[i].dataset['src'];
+//            向服务器发送请求，得到svg文件
+            $.get(src,function (data) {
+                var el = data.documentElement;
+                $(document.body).appendChild($(el));
+            });
+        }
+    })
+</script>
+</body>
+</html>

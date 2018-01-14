@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <!--v-model 取得message的值 并自动监听变化 双向数据绑定 改变一个值两个都发生改变-->
+    <input type="text" v-model="message">
+    <p>{{ message }}</p>
+</div>
+<script>
+//    数据
+    let data = {
+        message:'hello vue'
+    }
+//    实例
+    var vm = new Vue({
+        el:'#demo', //挂载元素
+        data:data
+    })
+</script>
+</body>
+</html>

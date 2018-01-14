@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <custom>
+        <!--当写在自定义标签之间的内容，要混合子组件里的模板-->
+        <!--在子组件中加入<slot></slot>标签就加入父组件的html结构 如果html不写，那么渲染默认的结构-->
+        <!--<div>我是html结构</div>-->
+    </custom>
+</div>
+<script>
+    Vue.component('custom',{
+        template:`
+        <div>
+            <slot>
+                <h1>自定义组件</h1>
+                <h2>这是第一个提醒</h2>
+                <h2>这是第二个提醒</h2>
+                <h2>这是第三个提醒</h2>
+            </slot>
+
+        </div>
+        `
+    })
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

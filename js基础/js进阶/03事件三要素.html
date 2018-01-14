@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    这是一个盒子
+</div>
+<button id="width">改变宽度</button>
+<script charset="utf-8" type="text/javascript">
+    //要操作先找人
+    var dom = document.getElementById("box");
+    var width = document.getElementById("width");
+    //事件三要素
+    //事件源.事件 = 事件处理方式
+    width.onclick = function () {
+        dom.style.width = "400px";
+    }
+</script>
+</body>
+</html>

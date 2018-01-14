@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        //简单原型
+        /*
+        function Person() {
+
+        }
+        Person.prototype = {
+            constructor:Person,  //必须要表示原型对象的构造器
+            name:'z3',
+            age:20,
+            job:'程序员',
+            say:function () {
+                alert('我是原型的函数！');
+            }
+        };
+        //这种写法不能先定义实例 此时原型对象里没有任何属性和方法
+        //ECMA5给原型对象重新设置构造器的方法  object.definePropery();
+        //火狐4+ ie8+ 支持ECMA5
+        //3个参数  参数1：重设构造器的对象  参数2：设置什么属性
+        Object.defineProperty(Person.prototype,'constructor',{
+            enumerable : false, //设置这个属性不能被枚举
+            value:Person //设置其构造函数为person
+        });
+        */
+
+        /*
+        var p1 = new Person;
+        alert(p1.name);
+        p1.say();
+        alert(Person.prototype.constructor);
+        */
+
+        //原型的动态特性
+        function Person() {
+
+        }
+        var p1 = new Person();
+        //原型对象的构造器默认为Person
+        Person.prototype.say = function () {
+            alert('我是方法！');
+        }
+        p1.say();
+
+        //注意简单原型使用的顺序（实例对象必须在原型对象之后创建）
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

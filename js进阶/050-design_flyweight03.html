@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript" src="../new-text/CommonUtil.js"></script>
+    <script charset="utf-8" type="text/javascript">
+
+        //享元模式：优化的设计模式 web日历
+        // 年、月、日 对象
+        var CalendarInterface = new XJ.Interface('CalendarInterface',['display'])
+        var CalendarYear = function (year,parent) {
+            this.year = year;
+            this.element = document.createElement('div');
+            this.element.style = 'none';
+            parent.appendChild(this.element); //this.element作为parent的子节点插入最后的一子节点之后
+            //判断是否为闰年
+            var isLeepYear = function (y) {
+                return (y>0) && !(y%4) && ((y%100)||!(y%400));
+            };
+            this.months = []; //年对象里应该包含月份
+            //盛装当前年所有月份到底有多少天
+            this.numDays = [31,isLeepYear(this.year)?29:28,31,30,31,30,31,31,30,31,30,31];
+            for (var i=0;i<12;i++){
+                this.months[i] = new CalendarMouth(i,this.numDays[i],this.element)
+            }
+        };
+        CalendarYear.prototype = {
+            constructor : CalendarYear,
+            display:function () {
+                for (var i=0;i<this.months.length;i++){
+                    this.months[i].display();
+                }
+                this.element.style.display = 'block';
+            }
+        }
+        var CalendarMouth = function (monthNum,numDays,parent) {
+            this.monthNum = monthNum;
+            this.element = document.createElement('div');
+            this.element.style = 'none';
+            parent.appendChild(this.element);
+            this.days = []; //月份里应该包含一个天的数组
+            for (var i = 0; i<numDays;i++){
+                this.days[i] = new CalendarDay(i+1,this.element);
+            }
+        }
+        CalendarMouth.prototype = {
+            constructor : CalendarMouth,
+            display:function () {
+                for (var i=0;i<this.days.length;i++){
+                    this.days[i].display();
+                }
+                this.element.style.display = 'block';
+            }
+        }
+        var CalendarDay = function (date,parent) {
+            this.date = date;
+            this.element = document.createElement('div');
+            this.element.style = 'none';
+            parent.appendChild(this.element);
+        }
+        CalendarDay.prototype = {
+            constructor : CalendarDay,
+            display:function () {
+                this.element.style.display = 'inline-block';
+                this.element.innerHTML = this.date;
+            }
+        }
+        window.onload = function () {
+            var mydiv = document.getElementById('mydiv');
+            var myyear = new CalendarYear(2017,mydiv)
+            myyear.display();
+        }
+
+    </script>
+</head>
+    <div id="mydiv"></div>
+    <input id="inp2">
+</html>

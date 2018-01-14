@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background: powderblue;
+        }
+        ul{
+            list-style: none;
+            width: 900px;
+            margin:100px auto;
+        }
+        li{
+            float: left;
+            width: 180px;
+            height: 80px;
+            text-align: center;
+            cursor: pointer;
+        }
+        li span{
+            display: block;
+            float: left;
+            line-height: 80px;
+            height: 80px;
+            font-size: 30px;
+            color: white;
+        }
+        li:hover .left{
+            transform: skew(0deg,-30deg);
+            background: #777;
+            /*background: red;*/
+        }
+        li:hover .right{
+            transform: skew(0deg,30deg);
+            background: #777;
+        }
+        li:hover .center{
+            transform: translateY(-18px);
+            text-shadow: 2px 2px 2px #555;
+            box-shadow: 0 15px 20px -4px #555;
+        }
+        li .left{
+            width: 30px;
+            transform-origin: left;
+            background: grey;
+        }
+        li .right{
+            width: 30px;
+            transform-origin: right;
+            background: grey;
+        }
+        li .center{
+            width: 120px;
+            background: grey;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <span class="left"></span>
+        <span class="center">语文</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">数学</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">英语</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">化学</span>
+        <span class="right"></span>
+    </li>
+    <li>
+        <span class="left"></span>
+        <span class="center">物理</span>
+        <span class="right"></span>
+    </li>
+</ul>
+</body>
+</html>

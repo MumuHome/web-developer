@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin:100px auto;
+            /*过渡属性详解*/
+            /*过渡属性*/
+            transition-property: width;
+            /*运动持续时间*/
+            transition-duration: 1s;
+            /*运动曲线*/
+            /*linear线性 ease减速 ease-in加速 ease-out减速 ease-in-out先加后减*/
+            transition-timing-function: linear;
+            /*运动延迟*/
+            transition-delay: 1s;
+            /*如果需要所有的属性都过渡*/
+            transition: all 1s;
+        }
+        .box:hover{
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>

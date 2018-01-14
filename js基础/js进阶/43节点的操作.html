@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        window.onload = function () {
+            var dom = document.getElementById("demo");
+            var btn = document.getElementsByTagName("button")[0];
+            btn.onclick = function () {
+                //创建新的节点
+                var li = document.createElement("li");
+                li.innerHTML = "新的内容";
+                dom.appendChild(li);    //子节点放入父亲节点的最后面
+                dom.appendChild(dom.cloneNode());   //把dom克隆一份 然后放在dom里面
+            }
+        }
+    </script>
+</head>
+<body>
+<button></button>
+<ul id="demo">
+
+</ul>
+</body>
+</html>

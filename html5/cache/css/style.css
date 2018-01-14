@@ -1,0 +1,5 @@
+/*before是元素一开始的时候，在元素内部*/
+body::before{
+    content: 'css注入的内容';
+    font-size: 60px;
+}

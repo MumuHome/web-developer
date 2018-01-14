@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script charset="utf-8" type="text/javascript">
+        // 单体模式(singleton)
+        // 简单单体模式
+//        var Singleton = {
+//            attr1: true,
+//            attr2: 10,
+//            method1: function () {
+//                alert('我是方法1')
+//            },
+//            method2: function () {
+//                alert('我是方法2')
+//            }
+//        }
+        //Singleton.method1();
+
+        // 补充：划分命名空间(区分代码) Ext.Manager.attr1 / method1
+//        var XJ ={}
+//        XJ.Singleton = {
+//            attr1: true,
+//            attr2: 10,
+//            method1: function () {
+//                alert('我是方法1')
+//            },
+//            method2: function () {
+//                alert('我是方法2')
+//            }
+//        };
+//        XJ.Singleton.method1();
+
+        // 2、借用闭包创建单体  闭包主要的目的是为了保护数据
+        // 命名空间
+        var XJ = {};
+        XJ.singleton = (function () {
+            // 添加自己的私有成员
+            var a1 = true;
+            var a2 = 10;
+            var f1 = function () {
+                alert('f1');
+            }
+            var f2 = function () {
+                alert('f2');
+            }
+            // 把块级作用域里的执行结果赋值给单体对象
+            return {
+                attr1: a1,
+                attr2: a2,
+                method1: function () {
+                    return f1();
+                },
+                method2: function () {
+                    return f2();
+                }
+                // 只能在return里面访问私有的成员
+            }
+        })();
+        XJ.singleton.method1();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

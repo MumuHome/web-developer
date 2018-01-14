@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            width: 400px;
+            margin:100px auto;
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<h1>ajax获取多个明星数据</h1>
+<input value="获取我的小伙伴们" id="get_Stars">
+
+<script>
+    document.querySelector('#get_Stars').onclick = function () {
+        var ajax = new XMLHttpRequest();
+        ajax.open('post','get_Stars.php');
+//        设置请求报文
+        ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        ajax.send();
+        ajax.onreadystatechange = function () {
+            if ( ajax.readyState==4 && ajax.status==200 )
+            {
+//                知道返回的是xml
+                console.log(ajax.responseXML);
+                var person = ajax.responseXML.querySelectorAll('person');
+
+//                在循环之前把table拼出来
+                var str = '<table>';
+
+                for ( var i=0; i< person.length ; i++)
+                {
+                    var currentPerson = person[i];
+
+//                    拼接开头
+                    str+='<tr>';
+                    str+='<td>'+currentPerson.querySelector('name').innerHTML+'</td>';
+                    str+='<td><img src="'+currentPerson.querySelector('path').innerHTML+'"></td>';
+                    str+='<td>'+currentPerson.querySelector('skill').innerHTML+'</td>';
+                    str+='<td><a href="#">点击了解更多</a></td>';
+                    str+='</tr>';
+                }
+
+//                直接拼接table的另半边字符串
+                str+='</table>';
+                document.body.innerHTML = str;
+
+            }
+        }
+    }
+</script>
+</body>
+</html>

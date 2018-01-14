@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" charset="utf-8">
+        /*
+        //简单的一个函数function关键字+函数的名字（没有返回值类型）
+        //参数列表相当于函数的入口，return语句相当于函数的出口
+        function test( a, b) {
+            alert(a+b);
+            return a + b ;//return语句后面不会执行
+        }
+        var c = test(10,20);
+        alert(c);
+        */
+        function  test1(aa) {
+            aa();
+        }
+        function  test2() {
+            alert("执行了")
+        }
+        //test1(test2());
+        test1(function () {
+            alert("我也执行了")
+        });
+
+        //在js中函数是可以嵌套的，但尽量不不要这样去使用
+        function  test3() {
+            function test4() {
+                alert('我是test4');
+            }
+            test4();
+        }
+        test3();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

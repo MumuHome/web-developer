@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            background: #bce8f1;
+            height: 100%;
+        }
+        img{
+            width: 80px;
+            position: absolute;
+            left:0;
+            bottom: 0;
+            /*初始状态*/
+            transform:translate(-120px,100px) rotate(45deg);
+            /*过渡状态*/
+            transition: all 1.2s;
+        }
+        body:hover img{
+            /*终止状态*/
+            transform: translate(800px,-400px) rotate(45deg);
+        }
+    </style>
+
+</head>
+<body>
+<img src="img/huojian.png">
+</body>
+</html>

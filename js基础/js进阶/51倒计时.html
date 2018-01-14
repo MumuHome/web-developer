@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="dom"></div>
+<script charset="utf-8" type="text/javascript">
+    var dom = document.getElementById("dom");
+    var endTime = new Date("2017/12/12 17:30:30");  //最终时间
+    setInterval(clock,1000);    //开启定时器
+    function clock() {
+        var nowTime = new Date();   //每次都要获取最新的时间
+//        console.log(nowTime.getTime()); //获得自己的毫秒数
+        var ms =  parseInt((endTime.getTime() - nowTime.getTime())/1000);   //用将来的时间减去现在的时间，除以1000得到秒，可能除不断因此取整；
+        // ms/3600(一小时3600秒，得到一共小时数) /24(得到一共天数)
+        var day = parseInt(ms/3600/24); //天数
+        day<10?day="0"+day:day; //如果小于10就在前面加上0
+        var hour = parseInt(ms/3600%24);    //小时
+        hour<10?hour="0"+hour:hour;
+        var min = parseInt(ms/60%60);  //秒数
+        min<10?min="0"+min:min;
+        var second = parseInt(ms%60);
+        second<10?second="0"+second:second;
+//        alert(hour);
+        dom.innerHTML = "离双十二还有"+day+"天"+ hour +"时"+ min +"分"+second+"秒";
+    }
+
+</script>
+</body>
+</html>

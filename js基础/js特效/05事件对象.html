@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    document.onclick = function (event) {
+//        console.log(event.clientX);
+//        console.log(event.clientY);
+//        console.log(window.event.clientX);
+        var event = event || window.event ; //兼容性写法 如果支持even则返回even，否则返回window.even
+        console.log(event.clientX);
+//        console.log(event.clientY);
+        console.log(event.pageX);
+        console.log(event.screenX); //屏幕
+    }
+</script>
+</html>

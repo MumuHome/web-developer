@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>测试jq_ajax方法</h1>
+<input type="button" value="测试ajax方法" id="jqAjax">
+</body>
+</html>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+//        绑定点击事件
+        $("#jqAjax").on('click',function () {
+//            使用jq发送ajax 参数为键值对
+            /*
+            * 常见参数：
+            *   url：请求的地址
+            *   success:请求成功返回的数据
+            *   type:默认为get，可以指定get和post
+            *   dataType:返回数据的形式 可以指定为json
+            *   data:传递的数据
+            *   beforeSend:发送之前调用的匿名函数，阻止该次请求
+            *   验证用户是否填了数据，如果没有填则不会发送请求
+            *   error:请求失败时执行
+            */
+            $.ajax({
+                url:'jq_ajax.php',
+                type:'post',
+                success:function (data) {
+                    console.log(data);
+                },
+                dataType:'json',
+                data:{"name":"干锅花菜","skill":"上天"},
+                beforeSend:function () {
+                    console.log("发送之前调用");
+                    return false;
+                },
+                error:function () {
+                    console.log("请求失败了")
+                }
+            })
+        })
+    })
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+        }
+        div{
+            width: 500px;
+            height: 300px;
+            border:1px solid #cdcdcd;
+            margin: 50px;
+        }
+        /*选中第一行伪元素的选择器*/
+        div::first-line{
+            color: white;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div>可以发现，这个方法在IE下是好使的，但是在Firefox等标准浏览器中就会报错了 removeNode is not defined，但是在核心JS中有一个操作DOM节点的方法叫：removeChild()，看名字应该就知道是移除子节点的，那么我们就可以变通一下 来实现移除指定的节点了，我们可以先去找到要删除节点的父节点，然后在父节点中运用removeChild来移除我们想移除的节点。我们可以定义一个方 法，就叫removeElement吧。</div>
+</body>
+</html>

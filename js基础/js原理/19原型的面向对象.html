@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(name,age) { //构造函数
+        this.name = name;
+        this.age = age;
+    }
+    //相同的部分用prototype写
+    Person.prototype.showName = function () {  //用的共同的父亲
+        alert("我的名字是"+this.name);
+    }
+    Person.prototype.showAge = function () {
+        alert("我的名字是"+this.age);
+    }
+    var demo = new Person("徐娟",24);
+    var demo1 = new Person("徐娟",24);
+    demo.showName();
+    alert(demo.showName == demo1.showName);
+</script>
+</body>
+</html>
