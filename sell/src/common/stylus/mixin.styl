@@ -1,0 +1,21 @@
+border-1px($color)
+  position: relative
+  &::after
+    display: block
+    content: ''
+    width: 100%
+    position: absolute
+    left: 0
+    bottom: 0
+    border-top: 1px solid $color
+
+//写一个display为none的伪类来定义没有边框
+border-none()
+  &::after
+    display :none
+
+//正常情况下用@2x的图片，当最小dpi为3 就用@3x
+bg-img($url)
+  background-image : url($url + "@2x.png")
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)
+    background-image : url($url + "@3x.png")

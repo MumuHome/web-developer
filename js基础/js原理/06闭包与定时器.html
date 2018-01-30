@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    for ( var i=0; i<10 ; i++ )
+    {
+        (function (data) {
+            setTimeout(function(){
+                console.log(data)
+            },1000)
+        })(i)
+    }
+    console.log(i);
+//    得到的结果为0、1、2、3...9
+//    因为 Javascript 只有两种作用域，一是全局作用域，二是函数作用域，它是没有块级作用域的。
+//    所以闭包的出现就相当于利用一个匿名函数的壳模拟出一个块级作用域。
+//    这里往匿名函数内部传的参数将会被拷贝一份，也就是说循环每执行一次就拷贝变量 i 的值到匿名函数内部。
+
+//    for( var i=0 ; i<10 ; i++ )
+//    {
+//        setTimeout(function () {
+//            console.log(i)
+//        },1000)
+//    }
+//    由于变量 i 直接暴露在全局作用域内，当调用 console.log 函数开始输出时，这是循环已经结束，所以会输出10个10。
+</script>
+</html>
